@@ -18,5 +18,5 @@ void ADS121X_cal(void);
 uint16_t ADS121X_DR(uint16_t);
 void ADS121X_POWERDOWN(void);
 
-int16_t ADS121X_measure(void);
-int16_t ADS121X_measure_sg(void);
+int32_t ADS121X_measure(void);
+int32_t ADS121X_measure_sg(void);

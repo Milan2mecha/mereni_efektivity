@@ -12,22 +12,25 @@
 #include "stm32f1xx_hal.h"
 #include "ADS111X.h"
 extern I2C_HandleTypeDef hi2c1;
-int16_t offset = 0;
+int32_t offset = 0;
 
 /*---------------------------*/
 /*   Základní práce s reg    */
 /*---------------------------*/
 
 //čtení ADC
-int16_t ADS111X_read(void)
+int32_t ADS111X_read(void)
 {
-  uint8_t buff[2];
-  uint16_t MSB;
-  uint16_t LSB;
+  uint8_t buff[3];
+  uint32_t MSB;
+  uint32_t MidB;
+  uint32_t LSB;
   int16_t out = 0;
-  HAL_I2C_Mem_Read(&hi2c1, ADS111X_addr, 0x10, 1, buff, 2, 10);
-  MSB = buff[0]<<8;
-  LSB = (uint16_t) buff[1];
+  HAL_I2C_Mem_Read(&hi2c1, ADS111X_addr, 0x10, 1, buff, 3, 10);
+  MSB = (uint32_t)buff[0]<<16;
+  MidB = (uint32_t)buff[1]<<8;
+  MSB = MSB | MidB;
+  LSB = (uint32_t) buff[2];
   MSB = MSB | LSB;
   out = out | MSB;
   return out;
@@ -262,7 +265,7 @@ void ADS111X_cal(void){
     tmp += ADS111X_read();
   }
   tmp /= 10;
-  offset = (int16_t)tmp;
+  offset = (int32_t)tmp;
 }
 
 //inicializace
@@ -273,9 +276,9 @@ void ADS111X_init(void)
   HAL_I2C_Master_Transmit(&hi2c1, ADS111X_addr, reset , 1, 100);
 }
 
-int16_t ADS111X_measure_sg(){
+int32_t ADS111X_measure_sg(){
   ADS111X_start();
-  int16_t tmp;
+  int32_t tmp;
   while (ADS111X_ready() == 0)
   {
       
@@ -285,8 +288,8 @@ int16_t ADS111X_measure_sg(){
   return tmp;
 }
 
-int16_t ADS111X_measure(){
-  int16_t tmp;
+int32_t ADS111X_measure(){
+  int32_t tmp;
   while (ADS111X_ready() == 0)
   {
       
