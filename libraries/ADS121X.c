@@ -10,7 +10,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f1xx_hal.h"
-#include "ADS111X.h"
+#include "ADS121X.h"
 extern I2C_HandleTypeDef hi2c1;
 int32_t offset = 0;
 
@@ -19,40 +19,36 @@ int32_t offset = 0;
 /*---------------------------*/
 
 //čtení ADC
-int32_t ADS111X_read(void)
+int32_t ADS121X_read(void)
 {
   uint8_t buff[3];
-  uint32_t MSB;
-  uint32_t MidB;
-  uint32_t LSB;
-  int16_t out = 0;
-  HAL_I2C_Mem_Read(&hi2c1, ADS111X_addr, 0x10, 1, buff, 3, 10);
-  MSB = (uint32_t)buff[0]<<16;
-  MidB = (uint32_t)buff[1]<<8;
-  MSB = MSB | MidB;
-  LSB = (uint32_t) buff[2];
-  MSB = MSB | LSB;
-  out = out | MSB;
+  int32_t out = 0;
+  HAL_I2C_Mem_Read(&hi2c1, (ADS121X_addr<<1), 0x10, 1, buff, 3, 10);
+  out = (uint32_t)buff[0];
+  out = out <<8;
+  out |= (uint32_t)buff[1];
+  out = out <<8;
+  LSB |= (uint32_t) buff[2];
   return out;
 }
 
 // Čtení registru nastavení
-uint8_t ADS111X_RREG(uint8_t num)
+uint8_t ADS121X_RREG(uint8_t num)
 {
   uint8_t status  = 0;
-  HAL_I2C_Mem_Read(&hi2c1, ADS111X_addr, (0b00100000 | (num<<2)), 1, &status, 1, 10);
+  HAL_I2C_Mem_Read(&hi2c1, (ADS121X_addr<<1), (0b00100000 | (num<<2)), 1, &status, 1, 10);
   return status;
 }
 
 //příkaz start
-void ADS111X_start(void){
+void ADS121X_start(void){
   uint8_t cmd = 0x08;
-  HAL_I2C_Master_Transmit(&hi2c1, ADS111X_addr, &cmd, 1 , 10);
+  HAL_I2C_Master_Transmit(&hi2c1, (ADS121X_addr<<1), &cmd, 1 , 10);
 }
 
 //je k dispozici výsledek nové konverze pokud ano vrátí 1
-uint8_t ADS111X_ready(void){
-  if ((ADS111X_RREG(1)&0x80)==0)
+uint8_t ADS121X_ready(void){
+  if ((ADS121X_RREG(1)&0x80)==0)
   {
     return 0;
   }else{
@@ -60,40 +56,40 @@ uint8_t ADS111X_ready(void){
   }
 }
 
-void ADS111X_POWERDOWN(void){
+void ADS121X_POWERDOWN(void){
   static uint8_t PD = 0x02;
-  HAL_I2C_Master_Transmit(&hi2c1, ADS111X_addr, &PD , 1, 100);
+  HAL_I2C_Master_Transmit(&hi2c1, (ADS121X_addr<<1), &PD , 1, 100);
 }
 /*---------------------------*/
 /*      NASTAVENÍ REGISTRU   */
 /*---------------------------*/
 
 //0-intern 1-extern
-uint8_t ADS111X_VREF(uint8_t mode){
+uint8_t ADS121X_VREF(uint8_t mode){
   uint8_t cmd[2];
   cmd[0] = 0b01000000;
-  cmd[1] = ADS111X_RREG(0);
+  cmd[1] = ADS121X_RREG(0);
   cmd[1] = cmd[1]&0xFE;
   if (mode == 1)
   {
     cmd[1] = cmd[1] | 0x01;
-    HAL_I2C_Master_Transmit(&hi2c1, ADS111X_addr, cmd, 2 , 10);
-    if((0x0C&ADS111X_RREG(0))==0x0C){
+    HAL_I2C_Master_Transmit(&hi2c1, (ADS121X_addr<<1), cmd, 2 , 10);
+    if((0x0C&ADS121X_RREG(0))==0x0C){
       return 1;
     }else{
       return 0;
     }
   }else{
-	  HAL_I2C_Master_Transmit(&hi2c1, ADS111X_addr, cmd, 2 , 10);
+	  HAL_I2C_Master_Transmit(&hi2c1, (ADS121X_addr<<1), cmd, 2 , 10);
 	  return 0;
   }
 }
 
 //nastavení kanálu mux
-uint8_t ADS111X_MUX(uint8_t AINP, uint8_t AINN){
+uint8_t ADS121X_MUX(uint8_t AINP, uint8_t AINN){
   uint8_t cmd [2];
   cmd[0] = 0b01000000;
-  cmd[1] = ADS111X_RREG(0);
+  cmd[1] = ADS121X_RREG(0);
   cmd[1] = 0x1F&cmd[1];
   
   switch (AINP)
@@ -101,115 +97,115 @@ uint8_t ADS111X_MUX(uint8_t AINP, uint8_t AINN){
   case AIN0:
     if (AINN == AIN1)
     {
-      HAL_I2C_Master_Transmit(&hi2c1, ADS111X_addr, cmd, 2 , 10);
+      HAL_I2C_Master_Transmit(&hi2c1, (ADS121X_addr<<1), cmd, 2 , 10);
     }else if (AINN == AGND)
     {
       cmd[1] = 0x60|cmd[1]; 
-      HAL_I2C_Master_Transmit(&hi2c1, ADS111X_addr, cmd, 2 , 10);
+      HAL_I2C_Master_Transmit(&hi2c1, (ADS121X_addr<<1), cmd, 2 , 10);
     }
-      return ADS111X_RREG(0);;
+      return ADS121X_RREG(0);;
     
     break;
   case AIN1:
     if (AINN == AIN2)
       {
         cmd[1] = 0x40|cmd[1]; 
-        HAL_I2C_Master_Transmit(&hi2c1, ADS111X_addr, cmd, 2 , 10);
+        HAL_I2C_Master_Transmit(&hi2c1, (ADS121X_addr<<1), cmd, 2 , 10);
       }else if (AINN == AGND)
       {
         cmd[1] = 0x80|cmd[1]; 
-        HAL_I2C_Master_Transmit(&hi2c1, ADS111X_addr, cmd, 2 , 10);
+        HAL_I2C_Master_Transmit(&hi2c1, (ADS121X_addr<<1), cmd, 2 , 10);
       }
-      return ADS111X_RREG(0);;
+      return ADS121X_RREG(0);;
     break;
   case AIN2:
     if (AINN == AIN3)
       {
         cmd[1] = 0x20|cmd[1]; 
-        HAL_I2C_Master_Transmit(&hi2c1, ADS111X_addr, cmd, 2 , 10);
+        HAL_I2C_Master_Transmit(&hi2c1, (ADS121X_addr<<1), cmd, 2 , 10);
       }else if (AINN == AGND)
       {
         cmd[1] = 0x90|cmd[1]; 
-        HAL_I2C_Master_Transmit(&hi2c1, ADS111X_addr, cmd, 2 , 10);
+        HAL_I2C_Master_Transmit(&hi2c1, (ADS121X_addr<<1), cmd, 2 , 10);
       }
-      return ADS111X_RREG(0);
+      return ADS121X_RREG(0);
       
     break;
   case AIN3:
     if (AINN == AGND)
       {
         cmd[1] = 0xC0|cmd[1]; 
-        HAL_I2C_Master_Transmit(&hi2c1, ADS111X_addr, cmd, 2 , 10);
+        HAL_I2C_Master_Transmit(&hi2c1, (ADS121X_addr<<1), cmd, 2 , 10);
       }
-        return ADS111X_RREG(0);
+        return ADS121X_RREG(0);
     break;
   case calibration:
     cmd[1] = 0xE0|cmd[1];
-    HAL_I2C_Master_Transmit(&hi2c1, ADS111X_addr, cmd, 2 , 10);
-    return ADS111X_RREG(1);
+    HAL_I2C_Master_Transmit(&hi2c1, (ADS121X_addr<<1), cmd, 2 , 10);
+    return ADS121X_RREG(1);
     break;
   default:
-    return ADS111X_RREG(0);
+    return ADS121X_RREG(0);
     break;
   }
 }
 
 //nastavení conversion modu 0-single shot 1-continuous
-uint8_t ADS111X_CM(uint8_t mode){
+uint8_t ADS121X_CM(uint8_t mode){
   uint8_t cmd [2];
   cmd[0] = 0b01000000;
-  cmd[1] = ADS111X_RREG(0);
+  cmd[1] = ADS121X_RREG(0);
   cmd[1] = 0xFD&cmd[1];
   if (mode == 1)
   {
     cmd[1] = cmd[1]|0x02;
-    HAL_I2C_Master_Transmit(&hi2c1, ADS111X_addr, cmd, 2 , 10);
-    ADS111X_start();
-    if((0x02&ADS111X_RREG(0))==0x02){
+    HAL_I2C_Master_Transmit(&hi2c1, (ADS121X_addr<<1), cmd, 2 , 10);
+    ADS121X_start();
+    if((0x02&ADS121X_RREG(0))==0x02){
       return 1;
     }else{
       return 0;
     }
   }else{
-    HAL_I2C_Master_Transmit(&hi2c1, ADS111X_addr, cmd, 2 , 10);
+    HAL_I2C_Master_Transmit(&hi2c1, (ADS121X_addr<<1), cmd, 2 , 10);
       return 0;
   }
 }
 
 /*nastavení zisku*/
-uint8_t ADS111X_GRAIN(uint8_t GRAIN)
+uint8_t ADS121X_GRAIN(uint8_t GRAIN)
 {
   uint8_t cmd [2];
   cmd[0] = 0b01000000;
-  cmd[1] = ADS111X_RREG(0);
+  cmd[1] = ADS121X_RREG(0);
   switch (GRAIN)
   {
   case 1:
     cmd[1] = cmd[1]&0xEF;
-    HAL_I2C_Master_Transmit(&hi2c1, ADS111X_addr, cmd, 2 , 10);
+    HAL_I2C_Master_Transmit(&hi2c1, (ADS121X_addr<<1), cmd, 2 , 10);
     break;
   case 4:
     cmd[1] = cmd[1]|0x10;
-    HAL_I2C_Master_Transmit(&hi2c1, ADS111X_addr, cmd, 2 , 10);
+    HAL_I2C_Master_Transmit(&hi2c1, (ADS121X_addr<<1), cmd, 2 , 10);
     break;
   default:
     break;
   }
-  return ADS111X_RREG(0);
+  return ADS121X_RREG(0);
 }
 
 /*nastavení datarate/sample speed vrací DR povolené hoodnoty 20,90,330,1000 jinak default 20, chyba 0*/
-uint16_t ADS111X_DR(uint16_t datarate){
+uint16_t ADS121X_DR(uint16_t datarate){
   uint8_t cmd[2];
   cmd[0] = 0b01000000;
-  cmd[1] = ADS111X_RREG(0);
+  cmd[1] = ADS121X_RREG(0);
   cmd[1] = cmd[1]&0xFC;
   switch (datarate)
   {
   case 90:
     cmd[1] = cmd[1] | 0x04;
-    HAL_I2C_Master_Transmit(&hi2c1, ADS111X_addr, cmd, 2 , 10);
-    if((0x0C&ADS111X_RREG(0))==0x04){
+    HAL_I2C_Master_Transmit(&hi2c1, (ADS121X_addr<<1), cmd, 2 , 10);
+    if((0x0C&ADS121X_RREG(0))==0x04){
       return 90;
     }else{
       return 0;
@@ -217,8 +213,8 @@ uint16_t ADS111X_DR(uint16_t datarate){
     break;
   case 330:
     cmd[1] = cmd[1] | 0x08;
-    HAL_I2C_Master_Transmit(&hi2c1, ADS111X_addr, cmd, 2 , 10);
-    if((0x0C&ADS111X_RREG(0))==0x08){
+    HAL_I2C_Master_Transmit(&hi2c1, (ADS121X_addr<<1), cmd, 2 , 10);
+    if((0x0C&ADS121X_RREG(0))==0x08){
       return 330;
     }else{
       return 0;
@@ -226,8 +222,8 @@ uint16_t ADS111X_DR(uint16_t datarate){
     break;
   case 1000:
     cmd[1] = cmd[1] | 0x0C;
-    HAL_I2C_Master_Transmit(&hi2c1, ADS111X_addr, cmd, 2 , 10);
-    if((0x0C&ADS111X_RREG(0))==0x0C){
+    HAL_I2C_Master_Transmit(&hi2c1, (ADS121X_addr<<1), cmd, 2 , 10);
+    if((0x0C&ADS121X_RREG(0))==0x0C){
       return 1000;
     }else{
       return 0;
@@ -236,8 +232,8 @@ uint16_t ADS111X_DR(uint16_t datarate){
   default:
   /*defalt 20sps*/
     //cmd[1] = cmd[1] | 0x00;
-    HAL_I2C_Master_Transmit(&hi2c1, ADS111X_addr, cmd, 2 , 10);
-    if((0x0C&ADS111X_RREG(0))==0x00){
+    HAL_I2C_Master_Transmit(&hi2c1, (ADS121X_addr<<1), cmd, 2 , 10);
+    if((0x0C&ADS121X_RREG(0))==0x00){
       return 20;
     }else{
       return 0;
@@ -251,50 +247,50 @@ uint16_t ADS111X_DR(uint16_t datarate){
 /*---------------------------*/
 
 //kalibrační rutina změří off-set ADC
-void ADS111X_cal(void){
+void ADS121X_cal(void){
   int32_t tmp = 0; 
-  ADS111X_MUX(calibration, calibration);
-  ADS111X_CM(0);
-  ADS111X_start();
+  ADS121X_MUX(calibration, calibration);
+  ADS121X_CM(0);
+  ADS121X_start();
   for (uint8_t i = 0; i < 10; i++)
   {
-    while (ADS111X_ready() == 0)
+    while (ADS121X_ready() == 0)
     {
       
     }
-    tmp += ADS111X_read();
+    tmp += ADS121X_read();
   }
   tmp /= 10;
   offset = (int32_t)tmp;
 }
 
 //inicializace
-void ADS111X_init(void)
+void ADS121X_init(void)
 {
   //reset
   static uint8_t reset [1] = {0x07};
-  HAL_I2C_Master_Transmit(&hi2c1, ADS111X_addr, reset , 1, 100);
+  HAL_I2C_Master_Transmit(&hi2c1, (ADS121X_addr<<1), reset , 1, 100);
 }
 
-int32_t ADS111X_measure_sg(){
-  ADS111X_start();
+int32_t ADS121X_measure_sg(){
+  ADS121X_start();
   int32_t tmp;
-  while (ADS111X_ready() == 0)
+  while (ADS121X_ready() == 0)
   {
       
   }
-  tmp = ADS111X_read();
+  tmp = ADS121X_read();
   tmp -= offset;
   return tmp;
 }
 
-int32_t ADS111X_measure(){
+int32_t ADS121X_measure(){
   int32_t tmp;
-  while (ADS111X_ready() == 0)
+  while (ADS121X_ready() == 0)
   {
       
   }
-  tmp = ADS111X_read();
+  tmp = ADS121X_read();
   tmp -= offset;
   return tmp;
 }

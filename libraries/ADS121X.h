@@ -1,7 +1,7 @@
 
 
 //#ifndef ADS121X_addr
-#define ADS121X_addr    0b10000000
+#define ADS121X_addr    0x40
 #define AIN0 0
 #define AIN1 1
 #define AIN2 2 
