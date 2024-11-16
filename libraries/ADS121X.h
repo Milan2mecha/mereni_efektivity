@@ -15,8 +15,12 @@ uint8_t ADS121X_RREG(uint8_t);
 uint8_t ADS121X_MUX(uint8_t, uint8_t);
 uint8_t ADS121X_CM(uint8_t);
 void ADS121X_cal(void);
-uint16_t ADS121X_DR(uint16_t);
+uint8_t ADS121X_DR(uint16_t);
 void ADS121X_POWERDOWN(void);
+void ADS121X_start(void);
+uint8_t ADS121X_ready(void);
+int32_t ADS121X_read(void);
+uint8_t ADS121X_WREG(uint8_t);
 
 int32_t ADS121X_measure(void);
 int32_t ADS121X_measure_sg(void);
