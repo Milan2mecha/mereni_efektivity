@@ -1,6 +1,3 @@
-
-
-//#ifndef ADS121X_addr
 #define ADS121X_addr    0x40
 #define AIN0 0
 #define AIN1 1
@@ -8,6 +5,7 @@
 #define AIN3 3
 #define AGND 4
 #define calibration 5
+int32_t offset;
 
 void ADS121X_init(void);
 uint8_t ADS121X_VREF(uint8_t);
@@ -22,5 +20,6 @@ uint8_t ADS121X_ready(void);
 int32_t ADS121X_read(void);
 uint8_t ADS121X_WREG(uint8_t);
 
-int32_t ADS121X_measure(void);
-int32_t ADS121X_measure_sg(void);
+int32_t ADS121X_meas_ct(void);
+int32_t ADS121X_meas_sg(void);
+float ADS121X_Voltage(int32_t, uint8_t, uint8_t);

@@ -25,7 +25,7 @@ int32_t ADS121X_read(void)
   int32_t out = 0;
   HAL_I2C_Mem_Read(&hi2c1, (ADS121X_addr<<1), 0x10, 1, buff, 3, 10);
   out = (uint32_t)buff[0]<<24;
-  out |= (uint32_t)buff[1]<<16; 
+  out |= (uint32_t)buff[1]<<16;
   out |= (uint32_t) buff[2] << 8;
   out = out >>8;
   return out;
@@ -100,7 +100,7 @@ uint8_t ADS121X_MUX(uint8_t AINP, uint8_t AINN){
       cmd = cmd | 0x00;
     }else if (AINN == AGND)
     {
-      cmd = cmd | 0x60;     
+      cmd = cmd | 0x60;
     }else{
       return 1;
     }
@@ -114,7 +114,7 @@ uint8_t ADS121X_MUX(uint8_t AINP, uint8_t AINN){
         cmd = cmd | 0x80;
       }else{
       return 1;
-      } 
+      }
     break;
   case AIN2:
     if (AINN == AIN3)
@@ -191,7 +191,7 @@ uint8_t ADS121X_GRAIN(uint8_t GRAIN)
   }
 }
 
-/*nastavení datarate/sample speed -vrátí 0 při úspěchu, 1 při špatném zadání , 2 jiná chyba (tested)*/ 
+/*nastavení datarate/sample speed -vrátí 0 při úspěchu, 1 při špatném zadání , 2 jiná chyba (tested)*/
 uint8_t ADS121X_DR(uint16_t datarate){
   uint8_t cmd;
   cmd = ADS121X_RREG(0);
@@ -226,14 +226,16 @@ uint8_t ADS121X_DR(uint16_t datarate){
 /*    inicializační funkce   */
 /*---------------------------*/
 
-//kalibrační rutina změří off-set ADC
+//kalibrační rutina změří off-set ADC (tested)
 void ADS121X_cal(void){
+  uint8_t cmd_puvodni = ADS121X_RREG(0);
   int32_t tmp = 0; 
   ADS121X_MUX(calibration, calibration);
   ADS121X_CM(0);
-  ADS121X_start();
+
   for (uint8_t i = 0; i < 10; i++)
   {
+    ADS121X_start();
     while (ADS121X_ready() == 0)
     {
       
@@ -242,6 +244,7 @@ void ADS121X_cal(void){
   }
   tmp /= 10;
   offset = (int32_t)tmp;
+  ADS121X_WREG(cmd_puvodni);
 }
 
 //inicializace (tested)
@@ -252,7 +255,9 @@ void ADS121X_init(void)
   HAL_I2C_Master_Transmit(&hi2c1, (ADS121X_addr<<1), reset , 1, 100);
 }
 
-int32_t ADS121X_measure_sg(){
+
+//zjistí napětí na ADC a očistí o offset (single)
+int32_t ADS121X_meas_sg(){
   ADS121X_start();
   int32_t tmp;
   while (ADS121X_ready() == 0)
@@ -264,7 +269,7 @@ int32_t ADS121X_measure_sg(){
   return tmp;
 }
 
-int32_t ADS121X_measure(){
+int32_t ADS121X_meas_ct(){
   int32_t tmp;
   while (ADS121X_ready() == 0)
   {
@@ -273,4 +278,18 @@ int32_t ADS121X_measure(){
   tmp = ADS121X_read();
   tmp -= offset;
   return tmp;
+}
+
+float ADS121X_Voltage(int32_t ADC, uint8_t GRAIN, uint8_t VREF){
+      float out = ADC;
+      if(VREF == 0){
+        out *= 2.048;
+      }else{
+        out *= 3.3;
+      }
+        out /= 0x7fffff;
+      if(GRAIN){
+        out /= 4;
+      }
+    return out;
 }
