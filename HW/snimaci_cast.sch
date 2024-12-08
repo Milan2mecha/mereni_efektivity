@@ -16070,7 +16070,7 @@ Flachstecker / Faston</description>
 <part name="R4" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="820R"/>
 <part name="R7" library="pot" library_urn="urn:adsk.eagle:library:331" deviceset="TRIM_EU-" device="PT10" package3d_urn="urn:adsk.eagle:package:22715/1" value="500R"/>
 <part name="AGND1" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="AGND" device=""/>
-<part name="C1" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="u1"/>
+<part name="C1" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="100n"/>
 <part name="AGND2" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="AGND" device=""/>
 <part name="JP3" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X2" device="" package3d_urn="urn:adsk.eagle:package:22435/2"/>
 <part name="U$2" library="ADC_TI" library_urn="urn:adsk.wipprod:fs.file:vf.5ZJYX3HETUWPLzpJOTtqzQ" deviceset="ADS1219" device="" package3d_urn="urn:adsk.eagle:package:3954/1" value="ADS1219"/>
@@ -16080,36 +16080,36 @@ Flachstecker / Faston</description>
 <part name="AGND4" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="AGND" device=""/>
 <part name="AGND5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="AGND" device=""/>
 <part name="AGND6" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="AGND" device=""/>
-<part name="C2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2"/>
-<part name="C3" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2"/>
-<part name="C4" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2"/>
+<part name="C2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="100n"/>
+<part name="C3" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="100n"/>
+<part name="C4" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="100n"/>
 <part name="+3V1" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+3V3" device=""/>
 <part name="+3V2" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+3V3" device=""/>
 <part name="+3V3" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+3V3" device=""/>
-<part name="R2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2"/>
-<part name="R5" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2"/>
-<part name="C5" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2"/>
-<part name="C6" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2"/>
+<part name="R2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="1K"/>
+<part name="R5" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="1K"/>
+<part name="C5" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="100n"/>
+<part name="C6" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="100n"/>
 <part name="AGND7" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="AGND" device=""/>
 <part name="AGND8" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="AGND" device=""/>
-<part name="R6" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2"/>
-<part name="R8" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2"/>
-<part name="C7" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2"/>
-<part name="R13" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2"/>
-<part name="R14" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2"/>
-<part name="R15" library="pot" library_urn="urn:adsk.eagle:library:331" deviceset="TRIM_EU-" device="PT10" package3d_urn="urn:adsk.eagle:package:22715/1"/>
-<part name="R16" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2"/>
-<part name="C10" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2"/>
+<part name="R6" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="550R"/>
+<part name="R8" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="550R"/>
+<part name="C7" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="100n"/>
+<part name="R13" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="15K"/>
+<part name="R14" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="820R"/>
+<part name="R15" library="pot" library_urn="urn:adsk.eagle:library:331" deviceset="TRIM_EU-" device="PT10" package3d_urn="urn:adsk.eagle:package:22715/1" value="500R"/>
+<part name="R16" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="1K"/>
+<part name="C10" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="100n"/>
 <part name="AGND10" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="AGND" device=""/>
-<part name="R17" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2"/>
-<part name="R18" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2"/>
+<part name="R17" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="5K"/>
+<part name="R18" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="5K"/>
 <part name="+3V4" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+3V3" device=""/>
 <part name="+3V5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+3V3" device=""/>
 <part name="GND8" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="+3V6" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+3V3" device=""/>
 <part name="GND9" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="AGND11" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="AGND" device=""/>
-<part name="C11" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="u1"/>
+<part name="C11" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="100n"/>
 <part name="AGND12" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="AGND" device=""/>
 <part name="+3V7" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+3V3" device=""/>
 <part name="+3V8" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+3V3" device=""/>
@@ -16140,12 +16140,12 @@ Flachstecker / Faston</description>
 <part name="AGND20" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="AGND" device=""/>
 <part name="R9" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R1206" package3d_urn="urn:adsk.eagle:package:23540/2" value="10R"/>
 <part name="JP1" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X2" device="" package3d_urn="urn:adsk.eagle:package:22435/2"/>
-<part name="R10" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2"/>
-<part name="C8" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2"/>
+<part name="R10" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="1K"/>
+<part name="C8" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="100n"/>
 <part name="AGND9" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="AGND" device=""/>
-<part name="R11" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2"/>
-<part name="R12" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2"/>
-<part name="C9" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2"/>
+<part name="R11" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="550R"/>
+<part name="R12" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="550R"/>
+<part name="C9" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="100n"/>
 <part name="U$5" library="merici_zesilovace" library_urn="urn:adsk.wipprod:fs.file:vf.3vfOA8xiQh-Eu6QT9tMI_Q" deviceset="INA190" device="" value="INA190"/>
 <part name="AGND14" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="AGND" device=""/>
 <part name="R23" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R1206" package3d_urn="urn:adsk.eagle:package:23540/2" value="R03"/>
@@ -16187,16 +16187,19 @@ Flachstecker / Faston</description>
 <part name="C12" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="100n"/>
 <part name="C13" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="100n"/>
 <part name="IC1" library="74xx-eu" library_urn="urn:adsk.eagle:library:85" deviceset="74*02" device="D" package3d_urn="urn:adsk.eagle:package:1010/2"/>
-<part name="C14" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="u1"/>
+<part name="C14" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="100n"/>
 <part name="+3V17" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+3V3" device=""/>
 <part name="GND11" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="IC2" library="74xx-eu" library_urn="urn:adsk.eagle:library:85" deviceset="74*02" device="D" package3d_urn="urn:adsk.eagle:package:1010/2"/>
-<part name="C15" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="u1"/>
+<part name="C15" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="100n"/>
 <part name="+3V18" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+3V3" device=""/>
 <part name="GND14" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="FRAME1" library="frames" library_urn="urn:adsk.eagle:library:42976481" deviceset="DINA3_L" device=""/>
 <part name="X1" library="con-rib" library_urn="urn:adsk.eagle:library:183" deviceset="SH5-2" device="" package3d_urn="urn:adsk.eagle:package:9989/1"/>
 <part uuid="2882400017" name="X2" library="con-rib" library_urn="urn:adsk.eagle:library:183" deviceset="SH5-2" device="" package3d_urn="urn:adsk.eagle:package:9989/1"/>
+<part name="AGND27" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="AGND" device=""/>
+<part name="GND2" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
+<part name="R35" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2"/>
 </parts>
 <sheets>
 <sheet>
@@ -16273,9 +16276,9 @@ banánky na panelu</text>
 <instance part="AGND2" gate="VR1" x="254" y="-233.68" smashed="yes">
 <attribute name="VALUE" x="251.46" y="-238.76" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="JP3" gate="G$1" x="-4.064" y="-153.924" smashed="yes" rot="R270">
-<attribute name="NAME" x="1.651" y="-147.574" size="1.778" layer="95" rot="R270"/>
-<attribute name="VALUE" x="-9.144" y="-147.574" size="1.778" layer="96" rot="R270"/>
+<instance part="JP3" gate="G$1" x="-4.064" y="-151.384" smashed="yes" rot="R270">
+<attribute name="NAME" x="1.651" y="-145.034" size="1.778" layer="95" rot="R270"/>
+<attribute name="VALUE" x="-9.144" y="-145.034" size="1.778" layer="96" rot="R270"/>
 </instance>
 <instance part="U$2" gate="G$1" x="7.62" y="-320.04" smashed="yes"/>
 <instance part="GND1" gate="1" x="12.7" y="-347.98" smashed="yes">
@@ -16361,7 +16364,7 @@ banánky na panelu</text>
 </instance>
 <instance part="R15" gate="1" x="132.08" y="-137.16" smashed="yes">
 <attribute name="NAME" x="128.651" y="-140.97" size="1.778" layer="95" rot="R90"/>
-<attribute name="VALUE" x="128.27" y="-140.97" size="1.778" layer="96" rot="R90"/>
+<attribute name="VALUE" x="128.27" y="-135.89" size="1.778" layer="96" rot="R90"/>
 </instance>
 <instance part="R16" gate="G$1" x="149.86" y="-137.16" smashed="yes">
 <attribute name="NAME" x="146.05" y="-135.6614" size="1.778" layer="95"/>
@@ -16506,9 +16509,9 @@ banánky na panelu</text>
 <attribute name="NAME" x="207.01" y="-140.7414" size="1.778" layer="95"/>
 <attribute name="VALUE" x="212.09" y="-140.462" size="1.778" layer="96"/>
 </instance>
-<instance part="JP1" gate="G$1" x="209.296" y="-153.924" smashed="yes" rot="R270">
-<attribute name="NAME" x="215.011" y="-147.574" size="1.778" layer="95" rot="R270"/>
-<attribute name="VALUE" x="204.216" y="-147.574" size="1.778" layer="96" rot="R270"/>
+<instance part="JP1" gate="G$1" x="209.296" y="-151.384" smashed="yes" rot="R270">
+<attribute name="NAME" x="215.011" y="-145.034" size="1.778" layer="95" rot="R270"/>
+<attribute name="VALUE" x="204.216" y="-145.034" size="1.778" layer="96" rot="R270"/>
 </instance>
 <instance part="R10" gate="G$1" x="210.82" y="-215.9" smashed="yes" rot="MR90">
 <attribute name="NAME" x="212.3186" y="-219.71" size="1.778" layer="95" rot="MR90"/>
@@ -16760,6 +16763,16 @@ banánky na panelu</text>
 <attribute name="NAME" x="111.76" y="-123.571" size="1.778" layer="95"/>
 <attribute name="VALUE" x="111.76" y="-129.413" size="1.778" layer="96"/>
 </instance>
+<instance part="AGND27" gate="VR1" x="284.48" y="-137.16" smashed="yes">
+<attribute name="VALUE" x="281.94" y="-139.7" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="GND2" gate="1" x="299.72" y="-137.16" smashed="yes">
+<attribute name="VALUE" x="297.18" y="-139.7" size="1.778" layer="96"/>
+</instance>
+<instance part="R35" gate="G$1" x="292.1" y="-132.08" smashed="yes">
+<attribute name="NAME" x="288.29" y="-130.5814" size="1.778" layer="95"/>
+<attribute name="VALUE" x="288.29" y="-135.382" size="1.778" layer="96"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -16771,7 +16784,7 @@ banánky na panelu</text>
 <pinref part="JP3" gate="G$1" pin="1"/>
 <wire x1="5.08" y1="-149.86" x2="5.08" y2="-144.78" width="0.1524" layer="91"/>
 <wire x1="5.08" y1="-144.78" x2="5.08" y2="-142.24" width="0.1524" layer="91"/>
-<wire x1="-1.524" y1="-151.384" x2="-1.524" y2="-144.78" width="0.1524" layer="91"/>
+<wire x1="-1.524" y1="-148.844" x2="-1.524" y2="-144.78" width="0.1524" layer="91"/>
 <wire x1="-1.524" y1="-144.78" x2="5.08" y2="-144.78" width="0.1524" layer="91"/>
 <wire x1="17.78" y1="-132.08" x2="17.78" y2="-142.24" width="0.1524" layer="91"/>
 <wire x1="7.62" y1="-139.7" x2="7.62" y2="-142.24" width="0.1524" layer="91"/>
@@ -16882,6 +16895,12 @@ banánky na panelu</text>
 <wire x1="322.58" y1="-195.58" x2="314.96" y2="-195.58" width="0.1524" layer="91"/>
 <pinref part="IC2" gate="P" pin="GND"/>
 <junction x="314.96" y="-195.58"/>
+</segment>
+<segment>
+<pinref part="GND2" gate="1" pin="GND"/>
+<wire x1="299.72" y1="-134.62" x2="299.72" y2="-132.08" width="0.1524" layer="91"/>
+<wire x1="299.72" y1="-132.08" x2="297.18" y2="-132.08" width="0.1524" layer="91"/>
+<pinref part="R35" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="ADC_U_IN" class="0">
@@ -17055,6 +17074,12 @@ banánky na panelu</text>
 <wire x1="144.78" y1="-332.74" x2="144.78" y2="-337.82" width="0.1524" layer="91"/>
 <wire x1="144.78" y1="-337.82" x2="149.86" y2="-337.82" width="0.1524" layer="91"/>
 <junction x="149.86" y="-337.82"/>
+</segment>
+<segment>
+<pinref part="AGND27" gate="VR1" pin="AGND"/>
+<wire x1="284.48" y1="-134.62" x2="284.48" y2="-132.08" width="0.1524" layer="91"/>
+<wire x1="284.48" y1="-132.08" x2="287.02" y2="-132.08" width="0.1524" layer="91"/>
+<pinref part="R35" gate="G$1" pin="1"/>
 </segment>
 </net>
 <net name="I_IN" class="0">
@@ -17522,7 +17547,7 @@ banánky na panelu</text>
 <pinref part="JP1" gate="G$1" pin="1"/>
 <wire x1="218.44" y1="-149.86" x2="218.44" y2="-144.78" width="0.1524" layer="91"/>
 <wire x1="218.44" y1="-144.78" x2="218.44" y2="-142.24" width="0.1524" layer="91"/>
-<wire x1="211.836" y1="-151.384" x2="211.836" y2="-144.78" width="0.1524" layer="91"/>
+<wire x1="211.836" y1="-148.844" x2="211.836" y2="-144.78" width="0.1524" layer="91"/>
 <wire x1="211.836" y1="-144.78" x2="218.44" y2="-144.78" width="0.1524" layer="91"/>
 <wire x1="233.68" y1="-132.08" x2="233.68" y2="-142.24" width="0.1524" layer="91"/>
 <wire x1="223.52" y1="-139.7" x2="223.52" y2="-142.24" width="0.1524" layer="91"/>
@@ -17622,12 +17647,12 @@ banánky na panelu</text>
 </net>
 <net name="A1_IN" class="0">
 <segment>
-<wire x1="-22.86" y1="-142.24" x2="-15.24" y2="-142.24" width="0.1524" layer="91"/>
+<wire x1="-27.94" y1="-142.24" x2="-15.24" y2="-142.24" width="0.1524" layer="91"/>
 <wire x1="-15.24" y1="-142.24" x2="-10.16" y2="-142.24" width="0.1524" layer="91"/>
 <wire x1="-10.16" y1="-142.24" x2="-7.62" y2="-142.24" width="0.1524" layer="91"/>
 <wire x1="-10.16" y1="-144.78" x2="-10.16" y2="-142.24" width="0.1524" layer="91"/>
 <pinref part="JP3" gate="G$1" pin="2"/>
-<wire x1="-4.064" y1="-151.384" x2="-4.064" y2="-144.78" width="0.1524" layer="91"/>
+<wire x1="-4.064" y1="-148.844" x2="-4.064" y2="-144.78" width="0.1524" layer="91"/>
 <wire x1="-4.064" y1="-144.78" x2="-10.16" y2="-144.78" width="0.1524" layer="91"/>
 <wire x1="-10.16" y1="-144.78" x2="-10.16" y2="-149.86" width="0.1524" layer="91"/>
 <wire x1="-10.16" y1="-121.92" x2="-15.24" y2="-121.92" width="0.1524" layer="91"/>
@@ -17639,19 +17664,18 @@ banánky na panelu</text>
 <pinref part="R1" gate="G$1" pin="1"/>
 <pinref part="R6" gate="G$1" pin="2"/>
 <label x="-20.32" y="-114.3" size="1.778" layer="95" rot="R180" xref="yes"/>
+<wire x1="-15.24" y1="-114.3" x2="-20.32" y2="-114.3" width="0.1524" layer="91"/>
+<pinref part="X1" gate="-1" pin="1"/>
+<wire x1="-30.48" y1="-139.7" x2="-27.94" y2="-139.7" width="0.1524" layer="91"/>
+<wire x1="-27.94" y1="-139.7" x2="-27.94" y2="-142.24" width="0.1524" layer="91"/>
+<pinref part="X1" gate="-1" pin="2"/>
+<wire x1="-30.48" y1="-142.24" x2="-27.94" y2="-142.24" width="0.1524" layer="91"/>
+<junction x="-27.94" y="-142.24"/>
 <junction x="-15.24" y="-142.24"/>
 <junction x="-10.16" y="-142.24"/>
 <junction x="-10.16" y="-144.78"/>
 <junction x="-15.24" y="-121.92"/>
-<wire x1="-15.24" y1="-114.3" x2="-20.32" y2="-114.3" width="0.1524" layer="91"/>
 <junction x="-15.24" y="-114.3"/>
-<pinref part="X1" gate="-1" pin="1"/>
-<wire x1="-30.48" y1="-139.7" x2="-27.94" y2="-139.7" width="0.1524" layer="91"/>
-<wire x1="-27.94" y1="-139.7" x2="-27.94" y2="-142.24" width="0.1524" layer="91"/>
-<wire x1="-27.94" y1="-142.24" x2="-22.86" y2="-142.24" width="0.1524" layer="91"/>
-<pinref part="X1" gate="-1" pin="2"/>
-<wire x1="-30.48" y1="-142.24" x2="-27.94" y2="-142.24" width="0.1524" layer="91"/>
-<junction x="-27.94" y="-142.24"/>
 </segment>
 <segment>
 <pinref part="U$1" gate="G$1" pin="S"/>
@@ -17744,7 +17768,7 @@ banánky na panelu</text>
 <wire x1="203.2" y1="-142.24" x2="205.74" y2="-142.24" width="0.1524" layer="91"/>
 <pinref part="R11" gate="G$1" pin="2"/>
 <pinref part="JP1" gate="G$1" pin="2"/>
-<wire x1="209.296" y1="-151.384" x2="209.296" y2="-144.78" width="0.1524" layer="91"/>
+<wire x1="209.296" y1="-148.844" x2="209.296" y2="-144.78" width="0.1524" layer="91"/>
 <wire x1="209.296" y1="-144.78" x2="203.2" y2="-144.78" width="0.1524" layer="91"/>
 <wire x1="203.2" y1="-144.78" x2="203.2" y2="-149.86" width="0.1524" layer="91"/>
 <wire x1="203.2" y1="-144.78" x2="203.2" y2="-142.24" width="0.1524" layer="91"/>
