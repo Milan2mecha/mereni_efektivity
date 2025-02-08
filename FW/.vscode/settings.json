@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "hw_control.h": "c",
+        "scpi.h": "c",
+        "stdio.h": "c",
+        "string.h": "c"
+    }
+}
