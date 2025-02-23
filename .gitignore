@@ -31,6 +31,7 @@ examples/*/test
 
 /nbproject/
 *.bak
+*.d
 
 # Code coverage files
 *.gcno
@@ -42,3 +43,19 @@ examples/*/test
 *.gbrjob
 *.xln
 
+HW/GERBER_DEVBRD/
+LTspice/*.raw*
+LTspice/*.log
+LTspice/*.asc
+FW/BP_demo2/Debug/
+FW/BP_demo2/Drivers/
+FW/BP_demo2/.settings/
+FW/BP_demo2/.cproject
+FW/BP_demo2/.project
+FW/BP_demo2/*.launch
+FW/BP_demo_USB/bp_demo_usb/Debug/
+FW/BP_demo_USB/bp_demo_usb/Drivers/
+FW/BP_demo_USB/bp_demo_usb/.settings/
+FW/BP_demo_USB/bp_demo_usb/.cproject
+FW/BP_demo_USB/bp_demo_usb/.project
+FW/BP_demo_USB/bp_demo_usb/*.launch
