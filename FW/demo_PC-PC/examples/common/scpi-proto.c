@@ -92,7 +92,7 @@ scpi_result_t DMM_MeasurePowerQ(scpi_t * context){
     return SCPI_RES_OK;
 }
 
-scpi_result_t DMM_MeasureEfectivityQ(scpi_t *context){
+/*scpi_result_t DMM_MeasureEfectivityQ(scpi_t *context){
     if(DMM_status != 1){
         SCPI_ErrorPush(context, 1);
         return SCPI_RES_ERR;
@@ -100,5 +100,5 @@ scpi_result_t DMM_MeasureEfectivityQ(scpi_t *context){
     double out = DMM_efectivity();
     SCPI_ResultDouble(context, out);
     return SCPI_RES_OK;
-}
+}*/
 

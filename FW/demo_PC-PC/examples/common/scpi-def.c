@@ -95,4 +95,17 @@ const scpi_command_t scpi_commands[] = {
     /* DMM */
     {.pattern = "MEASure:VOLTage:DC?", .callback = DMM_MeasureVoltageDcQ,},
     {.pattern = "MEASure:CURRent:DC?", .callback = DMM_MeasureCurrentDcQ,},
-    {.pattern = "MEASure:POWer?", 
+    {.pattern = "MEASure:POWer?", .callback = DMM_MeasureCurrentDcQ,},   
+     SCPI_CMD_LIST_END
+};
+scpi_interface_t scpi_interface = {
+    .error = SCPI_Error,
+    .write = SCPI_Write,
+    .control = SCPI_Control,
+    .flush = SCPI_Flush,
+    .reset = SCPI_Reset,
+};
+char scpi_input_buffer[SCPI_INPUT_BUFFER_LENGTH];
+scpi_error_t scpi_error_queue_data[SCPI_ERROR_QUEUE_SIZE];
+
+scpi_t scpi_context;
