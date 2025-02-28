@@ -1,8 +1,8 @@
 
 PROG = test
 
-SRCS = main.c ../common/scpi-def.c ../common/scpi-proto.c ../common/dev/DMM.c ../common/dev/HW_control.c
-CFLAGS += -Wextra -Wmissing-prototypes -Wimplicit -I ../../libscpi/inc/ -I ../common -I ../common/dev
+SRCS = main.c ../common/scpi-def.c ../common/scpi-proto.c ../common/DMM.c ../common/HW_control.c
+CFLAGS += -Wextra -Wmissing-prototypes -Wimplicit -I ../../libscpi/inc/ -I ../common 
 LDFLAGS += -lm ../../libscpi/dist/libscpi.a -Wl,--as-needed
 
 .PHONY: clean all
