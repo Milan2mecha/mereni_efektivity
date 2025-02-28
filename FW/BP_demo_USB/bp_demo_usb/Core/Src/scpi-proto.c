@@ -39,26 +39,24 @@ scpi_result_t SYS_MODEQ(scpi_t * context){
 /*                  DMM - prototypes            */
 /*----------------------------------------------*/
 scpi_result_t DMM_MeasureVoltageDcQ(scpi_t * context) {
-    double param;
-
-    if (!SCPI_ParamDouble(context, &param, TRUE)) {
-        /* do something, if parameter not present */
-    }
+    	int32_t param;
+    	SCPI_ParamInt32(context, &param, TRUE);
         if((param != 1 )&&(param != 2)){
         SCPI_ErrorPush(context, 2);
         return SCPI_RES_ERR;
-    }
+        }
         if(DMM_status != 1){
         SCPI_ErrorPush(context, 1);
         return SCPI_RES_ERR;
-    }
+        }
     double out = DMM_voltage((uint8_t)param);
-    SCPI_ResultDouble(context, out);
+    SCPI_ResultFloat(context, out);
+
     return SCPI_RES_OK;
 }
 scpi_result_t DMM_MeasureCurrentDcQ(scpi_t * context) {
-    double param;
-    SCPI_ParamDouble(context, &param, TRUE);
+    int32_t param;
+    SCPI_ParamInt32(context, &param, TRUE);
     if((param != 1 )&&(param != 2)){
         SCPI_ErrorPush(context, 2);
         return SCPI_RES_ERR;
@@ -75,8 +73,8 @@ scpi_result_t DMM_MeasureCurrentDcQ(scpi_t * context) {
 }
 
 scpi_result_t DMM_MeasurePowerQ(scpi_t * context){
-    double param;
-    SCPI_ParamDouble(context, &param, TRUE);
+    int32_t param;
+    SCPI_ParamInt32(context, &param, TRUE);
     if((param != 1 )&&(param != 2)){
         SCPI_ErrorPush(context, 2);
         return SCPI_RES_ERR;

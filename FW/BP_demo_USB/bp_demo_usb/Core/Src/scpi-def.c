@@ -89,11 +89,7 @@
 	    return SCPI_RES_OK;
 	}
 
-	scpi_result_t SCPI_SystemCommTcpipControlQ(scpi_t * context) {
-	    (void) context;
 
-	    return SCPI_RES_ERR;
-	}
 static scpi_result_t My_CoreTstQ(scpi_t * context) {
 
     SCPI_ResultInt32(context, 0);
@@ -143,3 +139,17 @@ const scpi_command_t scpi_commands[] = {
     {.pattern = "MEASure:POWer?", .callback = DMM_MeasurePowerQ,},
     SCPI_CMD_LIST_END
     };
+
+char scpi_input_buffer[SCPI_INPUT_BUFFER_LENGTH];
+scpi_error_t scpi_error_queue_data[SCPI_ERROR_QUEUE_SIZE];
+
+
+scpi_interface_t scpi_interface = {
+    .error = SCPI_Error,
+    .write = SCPI_Write,
+    .control = SCPI_Control,
+    .flush = SCPI_Flush,
+    .reset = SCPI_Reset,
+};
+
+scpi_t scpi_context;

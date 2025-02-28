@@ -56,19 +56,7 @@ static void MX_GPIO_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-char scpi_input_buffer[SCPI_INPUT_BUFFER_LENGTH];
-scpi_error_t scpi_error_queue_data[SCPI_ERROR_QUEUE_SIZE];
 
-
-scpi_interface_t scpi_interface = {
-    .error = SCPI_Error,
-    .write = SCPI_Write,
-    .control = SCPI_Control,
-    .flush = SCPI_Flush,
-    .reset = SCPI_Reset,
-};
-
-scpi_t scpi_context;
 
 extern uint8_t UserRxBufferFS[1000];
 extern uint8_t is_new_data_ready;
@@ -105,16 +93,11 @@ int main(void)
   MX_GPIO_Init();
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
-  const char IDN1[] = "MilanKopper";
-  const char IDN2[] = "Mereni_efektivity";
-  const char IDN3[] = "00001";
-  const char IDN4[] = "0.1";
-
   SCPI_Init(&scpi_context,
               scpi_commands,
               &scpi_interface,
               scpi_units_def,
-              IDN1, IDN2, IDN3, IDN4,
+              SCPI_IDN1, SCPI_IDN2, SCPI_IDN3, SCPI_IDN4,
               scpi_input_buffer, SCPI_INPUT_BUFFER_LENGTH,
               scpi_error_queue_data, SCPI_ERROR_QUEUE_SIZE);
   /* USER CODE END 2 */

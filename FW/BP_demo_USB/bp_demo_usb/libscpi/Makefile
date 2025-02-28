@@ -10,6 +10,7 @@ MCU = -mcpu=cortex-m3 -mthumb
 CFLAGS = $(MCU) -Wextra -Wmissing-prototypes -Wimplicit -Iinc -Os -ffunction-sections -fdata-sections
 CFLAGS_SHARED = $(CFLAGS) -fPIC
 LDFLAGS = -Wl,--gc-sections
+CFLAGS += -D_BSD_SOURCE -D_XOPEN_SOURCE=500 -D_ISOC99_SOURCE -D_POSIX_C_SOURCE=200112L
 
 # Cesty
 OBJDIR = obj

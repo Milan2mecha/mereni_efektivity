@@ -44,9 +44,9 @@ extern "C" {
 
 #include "cc.h"
 
-#ifdef SCPI_USER_CONFIG
+
 #include "scpi_user_config.h"
-#endif
+
 
 /* set the termination character(s)   */
 #define LINE_ENDING_CR          "\r"    /*   use a <CR> carriage return as termination charcter */
