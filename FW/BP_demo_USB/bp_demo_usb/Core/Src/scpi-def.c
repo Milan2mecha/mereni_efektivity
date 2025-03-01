@@ -134,8 +134,8 @@ const scpi_command_t scpi_commands[] = {
     {.pattern = "SYStem:MODE", .callback = SYS_MODE,},
 
     /* DMM */
-    {.pattern = "MEASure:VOLTage:DC?", .callback = DMM_MeasureVoltageDcQ,},
-    {.pattern = "MEASure:CURRent:DC?", .callback = DMM_MeasureCurrentDcQ,},
+    {.pattern = "MEASure:VOLTage?", .callback = DMM_MeasureVoltageDcQ,},
+    {.pattern = "MEASure:CURRent?", .callback = DMM_MeasureCurrentDcQ,},
     {.pattern = "MEASure:POWer?", .callback = DMM_MeasurePowerQ,},
     SCPI_CMD_LIST_END
     };

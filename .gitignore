@@ -43,6 +43,16 @@ examples/*/test
 *.gbrjob
 *.xln
 
+#Labview
+*.aliases
+*.lvlps
+*.dll
+*.so
+*.so.*
+*.dylib
+*.lvlibp
+*.llb
+
 HW/GERBER_DEVBRD/
 LTspice/*.raw*
 LTspice/*.log

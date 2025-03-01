@@ -18,6 +18,19 @@ uint8_t DMM_Enable(void)
     DMM_status = 1;
     return 1;
 }
+uint8_t DMM_Disable(void){
+    if(SWTCH(1,0)!=0){
+        return -1;
+    }
+    if(SWTCH(2,0)!=0){
+        return -1;
+    }
+    if(HW_status() !=1){
+        return -1;
+    }
+    DMM_status = 0;
+    return 1;
+}
 
 double DMM_voltage(uint8_t channel){
     return HW_voltage(channel);
