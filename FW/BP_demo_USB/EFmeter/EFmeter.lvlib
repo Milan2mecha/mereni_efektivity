@@ -48,6 +48,7 @@
 			<Item Name="Reset.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Utility/Reset.vi"/>
 			<Item Name="Revision Query.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Utility/Revision Query.vi"/>
 			<Item Name="Self-Test.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Utility/Self-Test.vi"/>
+			<Item Name="SetMode.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/SetMode.vi"/>
 		</Item>
 		<Item Name="dir.mnu" Type="Document" URL="/&lt;instrlib&gt;/EFmeter/Public/dir.mnu"/>
 		<Item Name="Close.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Close.vi"/>
