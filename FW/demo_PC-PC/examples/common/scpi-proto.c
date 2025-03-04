@@ -8,6 +8,7 @@
 /*                  SYS - prototypes            */
 /*----------------------------------------------*/
 
+
 static scpi_choice_def_t mode_list[] = {
     {"OFF", 0},
     {"DMM", 1},
@@ -40,9 +41,9 @@ scpi_result_t SYS_MODE(scpi_t * context){
     return SCPI_RES_OK;                                      
 }
 scpi_result_t SYS_MODEQ(scpi_t * context){
-    if(DMM_status){
+    if(DMM_Status()){
         SCPI_ResultMnemonic(context, "DMM");
-    }else if(DMM_status){
+    }else if(0){
         SCPI_ResultMnemonic(context, "BTES");
     } else
     {
@@ -55,18 +56,22 @@ scpi_result_t SYS_MODEQ(scpi_t * context){
 /*                  DMM - prototypes            */
 /*----------------------------------------------*/
 scpi_result_t DMM_MeasureVoltageDcQ(scpi_t * context) {
-    	int32_t param;
-    	SCPI_ParamInt32(context, &param, TRUE);
-        if((param != 1 )&&(param != 2)){
-        SCPI_ErrorPush(context, 2);
+    int32_t param;
+    SCPI_ParamInt32(context, &param, TRUE);
+    if((param != 1 )&&(param != 2)){
+        SCPI_ErrorPush(context, -224);
         return SCPI_RES_ERR;
-        }
-        if(DMM_status != 1){
-        SCPI_ErrorPush(context, 1);
+    }
+    DMM_out out = DMM_Voltage((uint8_t)param);
+    if(out.status != 1){
+        SCPI_ErrorPush(context, -200);
         return SCPI_RES_ERR;
-        }
-    double out = DMM_voltage((uint8_t)param);
-    SCPI_ResultFloat(context, out);
+    }
+    if(out.error != 1){
+        SCPI_ErrorPush(context, -200);
+        return SCPI_RES_ERR;
+    }
+    SCPI_ResultDouble(context, out.result);
 
     return SCPI_RES_OK;
 }
@@ -74,17 +79,19 @@ scpi_result_t DMM_MeasureCurrentDcQ(scpi_t * context) {
     int32_t param;
     SCPI_ParamInt32(context, &param, TRUE);
     if((param != 1 )&&(param != 2)){
+        SCPI_ErrorPush(context, -224);
+        return SCPI_RES_ERR;
+    }
+    DMM_out out = DMM_Current((uint8_t)param);
+    if(out.status != 1){
         SCPI_ErrorPush(context, -200);
         return SCPI_RES_ERR;
     }
-    if(DMM_status != 1){
-        SCPI_ErrorPush(context, 1);
+    if(out.error != 1){
+        SCPI_ErrorPush(context, -200);
         return SCPI_RES_ERR;
     }
-
-    double out = DMM_current((uint8_t)param);
-    SCPI_ResultDouble(context, out);
-
+    SCPI_ResultDouble(context, out.result);
     return SCPI_RES_OK;
 }
 
@@ -92,17 +99,19 @@ scpi_result_t DMM_MeasurePowerQ(scpi_t * context){
     int32_t param;
     SCPI_ParamInt32(context, &param, TRUE);
     if((param != 1 )&&(param != 2)){
+        SCPI_ErrorPush(context, -224);
+        return SCPI_RES_ERR;
+    }
+    DMM_out out = DMM_Power((uint8_t)param);
+    if(out.status != 1){
         SCPI_ErrorPush(context, -200);
         return SCPI_RES_ERR;
     }
-    if(DMM_status != 1){
+    if(out.error != 1){
         SCPI_ErrorPush(context, -200);
         return SCPI_RES_ERR;
     }
-
-    double out = DMM_power((uint8_t)param);
-
-    SCPI_ResultDouble(context, out);
+    SCPI_ResultDouble(context, out.result);
     return SCPI_RES_OK;
 }
 

@@ -95,7 +95,7 @@ const scpi_command_t scpi_commands[] = {
     /* DMM */
     {.pattern = "MEASure:VOLTage?", .callback = DMM_MeasureVoltageDcQ,},
     {.pattern = "MEASure:CURRent?", .callback = DMM_MeasureCurrentDcQ,},
-    {.pattern = "MEASure:POWer?", .callback = DMM_MeasureCurrentDcQ,},   
+    {.pattern = "MEASure:POWer?", .callback = DMM_MeasurePowerQ,},   
      SCPI_CMD_LIST_END
 };
 scpi_interface_t scpi_interface = {

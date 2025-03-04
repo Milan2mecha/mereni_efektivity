@@ -1,12 +1,17 @@
 #include "HW_control.h"
 #include <stdint.h>
-int8_t DMM_status;
 
 
+typedef struct{
+    uint8_t status;
+    int8_t error;
+    double result;
+}DMM_out;
 
+uint8_t DMM_Status(void);
 uint8_t DMM_Enable(void);
 uint8_t DMM_Disable(void);
-double DMM_voltage(uint8_t channel);
-double DMM_current(uint8_t channel);
-double DMM_power(uint8_t channel);
 
+DMM_out DMM_Voltage(uint8_t channel);
+DMM_out DMM_Current(uint8_t channel);
+DMM_out DMM_Power(uint8_t channel);
