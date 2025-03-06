@@ -4,9 +4,13 @@
 
 uint8_t DMM_status = 0;
 
-uint8_t DMM_Status(void)
+const DMM_set defaultSet = {0,0,20,0,{0,0,0,0}};
+DMM_set set_running = defaultSet;
+double data_last[4];
+
+DMM_set DMM_Status(void)
 {
-    return DMM_status;
+    return set_running;
 }
 
 uint8_t DMM_Enable(void)
@@ -21,7 +25,7 @@ uint8_t DMM_Enable(void)
     if(HW_status() !=1){
         return -1;
     }
-    DMM_status = 1;
+    set_running.status = 1;
     return 1;
 }
 uint8_t DMM_Disable(void){
@@ -34,7 +38,7 @@ uint8_t DMM_Disable(void){
     if(HW_status() !=1){
         return -1;
     }
-    DMM_status = 0;
+    set_running.status = 0;
     return 1;
 }
 
@@ -78,4 +82,9 @@ DMM_out DMM_Power(uint8_t channel){
     }
     out.result = HW_voltage(channel)*HW_current(channel);
     return out;
+}
+
+void DMM_SRate(uint16_t SR){
+    set_running.sampleRate = SR;
+    return;
 }

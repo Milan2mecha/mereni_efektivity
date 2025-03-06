@@ -96,6 +96,13 @@ const scpi_command_t scpi_commands[] = {
     {.pattern = "MEASure:VOLTage?", .callback = DMM_MeasureVoltageDcQ,},
     {.pattern = "MEASure:CURRent?", .callback = DMM_MeasureCurrentDcQ,},
     {.pattern = "MEASure:POWer?", .callback = DMM_MeasurePowerQ,},   
+    //settings
+    {.pattern = "DMM:CONFigure:SRATe", .callback = DMM_ConfigureSR,},
+    {.pattern = "DMM:CONFigure:CONTinous", .callback = DMM_Continous,},
+    {.pattern = "DMM:CONFigure?", .callback = DMM_ConfigureQ,},
+    //FETCh
+    {.pattern = "FETCh:VOLTage?", .callback = DMM_FetchVoltageQ,},
+    {.pattern = "FETCh:CURRent?", .callback = DMM_FetchCurrentQ,},
      SCPI_CMD_LIST_END
 };
 scpi_interface_t scpi_interface = {

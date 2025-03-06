@@ -41,7 +41,8 @@ scpi_result_t SYS_MODE(scpi_t * context){
     return SCPI_RES_OK;                                      
 }
 scpi_result_t SYS_MODEQ(scpi_t * context){
-    if(DMM_Status()){
+    DMM_set tmp_DMM  = DMM_Status();
+    if(tmp_DMM.status){
         SCPI_ResultMnemonic(context, "DMM");
     }else if(0){
         SCPI_ResultMnemonic(context, "BTES");
@@ -115,13 +116,56 @@ scpi_result_t DMM_MeasurePowerQ(scpi_t * context){
     return SCPI_RES_OK;
 }
 
-/*scpi_result_t DMM_MeasureEfectivityQ(scpi_t *context){
-    if(DMM_status != 1){
-        SCPI_ErrorPush(context, 1);
+static scpi_choice_def_t conf_param[] = {
+    {"SRAT", 0},
+    {"CONT", 1},
+    {"AUTO", 2},
+    SCPI_CHOICE_LIST_END /* termination of option list */
+};
+
+scpi_result_t DMM_ConfigureSR(scpi_t * context){
+    int32_t param;
+    SCPI_ParamInt32(context, &param, TRUE);
+    if((param != 20 )&&(param != 90)&&(param != 330)&&(param != 1000)){
+        SCPI_ErrorPush(context, -224);
         return SCPI_RES_ERR;
     }
-    double out = DMM_power(1);
-    SCPI_ResultDouble(context, out);
+    DMM_SRate((uint16_t)param);
     return SCPI_RES_OK;
-}*/
+}
 
+scpi_result_t DMM_Continous(scpi_t * context){
+    int32_t param;
+    SCPI_ParamInt32(context, &param, TRUE);
+    return SCPI_RES_OK;
+}
+scpi_result_t DMM_ConfigureQ(scpi_t * context){
+    uint32_t param;
+    if (!SCPI_ParamChoice(context, conf_param, &param, TRUE)) {
+        return SCPI_RES_ERR;
+    }
+    DMM_set tmp  = DMM_Status();
+    switch(param){
+    case 0:
+    SCPI_ResultInt32(context, tmp.sampleRate);
+    break;
+    case 1:
+    SCPI_ResultInt32(context, tmp.continous);
+    break;
+    case 2:
+    SCPI_ResultInt32(context, tmp.autoRange);
+    break;
+    default:
+    SCPI_ErrorPush(context, -200);
+    return SCPI_RES_ERR;
+    break;
+    }
+    return SCPI_RES_OK;
+}
+
+scpi_result_t DMM_FetchVoltageQ(scpi_t * context){
+    return SCPI_RES_OK;
+}
+scpi_result_t DMM_FetchCurrentQ(scpi_t * context){
+    return SCPI_RES_OK;
+}
