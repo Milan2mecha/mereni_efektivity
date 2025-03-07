@@ -12,8 +12,47 @@
 const float CurrKoef[2][2][3] = {{{0,1,0},{0,1,0}},{{0,1,0},{0,1,0}}}; //rozsah4A, rozsah1A -> absolutní,lineární,kvadratický
 const float VoltKoef[2][3] = {{0,1,0},{0,1,0}}; //absolutní,lineární,kvadratický
 
-static uint8_t range[]={0,0}; //0=4A,1=1A
-static uint8_t rangeOVF[]={0,0};
+static uint8_t range[]={1,1}; //0=4A,1=1A
+static uint8_t rangeOVF[]={0,0};//přetečení rozsahu
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
+	if(GPIO_Pin == GPIO_PIN_0){
+        if(1){
+            if(range[0]==1){
+                HAL_GPIO_WritePin(PROT1,1);
+                //HAL_GPIO_WritwPin(RELE1,1);
+                range[0]=0;
+                HAL_Delay(10);//10ms rychlost sepnutí relé
+                HAL_GPIO_WritePin(PROT1,0);
+                return;
+            }else{
+                HAL_GPIO_WritePin(PROT1,1);
+                rangeOVF[0]=1;
+                return;
+            }
+        }else{
+            return;
+        }
+	}
+    if(GPIO_Pin == GPIO_PIN_1){
+        if(1){
+            if(range[0]==1){
+                HAL_GPIO_WritePin(PROT2,1);
+                //HAL_GPIO_WritwPin(RELE2,1);
+                range[1]=0;
+                HAL_Delay(10);//10ms rychlost sepnutí relé
+                HAL_GPIO_WritePin(PROT2,0);
+                return;
+            }else{
+                HAL_GPIO_WritePin(PROT2,1);
+                rangeOVF[1]=1;
+                return;
+            }
+        }else{
+            return;
+        }
+	}
+}
 
 uint8_t HW_status(void){
     if(HAL_GPIO_ReadPin(STAV_IN) == 0){
@@ -34,7 +73,7 @@ uint8_t HW_init(void){
     //reset PROT
     HAL_GPIO_WritePin(PROT1, 1);
     HAL_GPIO_WritePin(PROT2, 1);
-    HAL_Delay(2);
+    HAL_Delay(10);
     HAL_GPIO_WritePin(PROT1, 0);
     HAL_GPIO_WritePin(PROT2, 0);
     ADS121X_init();
@@ -48,6 +87,7 @@ int8_t HW_switch(uint8_t channel, int8_t status){
             HAL_GPIO_WritePin(RIZENI_IN, status);
             return 1;
         }else{
+            HAL_GPIO_WritePin(RIZENI_IN, 0);
             return -1;
         }
     }
@@ -56,6 +96,7 @@ int8_t HW_switch(uint8_t channel, int8_t status){
             HAL_GPIO_WritePin(RIZENI_IN, status);
             return 1;
         }else{
+            HAL_GPIO_WritePin(RIZENI_IN, 0);
             return -1;
         }
     }
