@@ -1,6 +1,8 @@
 #include "gpio.h"
 #include "i2c.h"
 
+
+uint8_t HW_range(uint8_t channel);
 uint8_t HW_status(void);
 uint8_t HW_init(void);
 int8_t HW_switch(uint8_t channel, int8_t status);
