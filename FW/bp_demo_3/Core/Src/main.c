@@ -28,6 +28,8 @@
 #include "scpi/scpi.h"
 #include "display.h"
 #include "HW_hand.h"
+#include "DMM.h"
+#include "scpi-def.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -58,7 +60,9 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+extern uint8_t UserRxBufferFS[1000];
+extern uint8_t is_new_data_ready;
+extern uint16_t new_data_length;
 /* USER CODE END 0 */
 
 /**
@@ -95,10 +99,16 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start(&htim1);
   HW_init();
-  HW_switch(1,1);
-  HW_switch(2,1);
+  //DMM_Enable();
   DP_init();
-  DrawPage1(69,69);
+  SCPI_Init(&scpi_context,
+              scpi_commands,
+              &scpi_interface,
+              scpi_units_def,
+              SCPI_IDN1, SCPI_IDN2, SCPI_IDN3, SCPI_IDN4,
+              scpi_input_buffer, SCPI_INPUT_BUFFER_LENGTH,
+              scpi_error_queue_data, SCPI_ERROR_QUEUE_SIZE);
+  DrawPage1(0.69,69);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -106,7 +116,13 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-    DrawPage1(HW_current(0),HW_range(0));
+  /*  DMM_out I1 = DMM_Current(0);
+    DMM_out I2 = DMM_Current(1);
+    DrawPage1(I1.result,I2.result);*/
+	  if(is_new_data_ready){
+		  SCPI_Input(&scpi_context,(char*)UserRxBufferFS,  new_data_length);
+		  is_new_data_ready = 0;
+	  }
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

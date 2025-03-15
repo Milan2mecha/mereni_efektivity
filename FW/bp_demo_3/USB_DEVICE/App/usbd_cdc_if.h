@@ -93,7 +93,10 @@
 extern USBD_CDC_ItfTypeDef USBD_Interface_fops_FS;
 
 /* USER CODE BEGIN EXPORTED_VARIABLES */
-
+uint8_t UserRxBufferFS[APP_RX_DATA_SIZE];
+uint8_t UserTxBufferFS[APP_TX_DATA_SIZE];
+uint8_t  is_new_data_ready;
+uint16_t new_data_length;
 /* USER CODE END EXPORTED_VARIABLES */
 
 /**

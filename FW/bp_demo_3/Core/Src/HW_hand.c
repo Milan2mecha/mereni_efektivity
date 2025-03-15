@@ -87,7 +87,7 @@ uint8_t HW_status(void){
         HAL_GPIO_WritePin(RIZENI_OUT, 0);
         return 1;
     }
-    if((rangeOVF[0]==1) || (rangeOVF[0]==1)){
+    if((rangeOVF[0]==1) || (rangeOVF[1]==1)){
         return 2;
     }
     return 0;
