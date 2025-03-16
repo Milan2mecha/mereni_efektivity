@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "i2c.h": "c",
-        "usb_device.h": "c",
-        "gpio.h": "c",
-        "ads121x.h": "c"
-    }
-}

@@ -94,10 +94,9 @@ uint8_t HW_status(void){
 }
 
 uint8_t HW_init(void){
-    HAL_Delay(100);
     //Nastaví rozsah
-    HAL_GPIO_WritePin(RELE1, range[0]);
-    HAL_GPIO_WritePin(RELE2, range[1]);
+    HAL_GPIO_WritePin(RELE1, 0);
+    HAL_GPIO_WritePin(RELE2, 0);
     //reset PROT
     HAL_GPIO_WritePin(PROT1, 1);
     HAL_GPIO_WritePin(PROT2, 1);
