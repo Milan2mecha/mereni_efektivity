@@ -2,7 +2,7 @@
 #include "DMM.h"
 #include <stdint.h>
 
-uint8_t DMM_status = 0;
+
 
 const DMM_set defaultSet = {0,0,20,0,{0,0,0,0}};
 DMM_set set_running = defaultSet;

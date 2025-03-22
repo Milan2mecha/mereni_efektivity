@@ -3,6 +3,8 @@
 #include "ADS121X.h"
 #include "HW_hand.h"
 #include "tim.h"
+#include "DMM.h"
+#include "display.h"
 
 #define PROT1 GPIOB,GPIO_PIN_12
 #define PROT2 GPIOB,GPIO_PIN_14
@@ -18,7 +20,11 @@ const float VoltKoef[2][3] = {{0.0708,15.122,-0.0688},{0.0708,15.122,-0.0688}}; 
 
 uint8_t range[]={0,0}; //0=1A,1=5A
 uint8_t rangeOVF[]={0,0};//přetečení rozsahu
+uint8_t range_down_flag[]={0,0};
 
+extern DMM_set set_running;
+
+/*blokující delay s časovačem*/
 void Delay_TIM(uint16_t time){
 	time *= 40;
 	uint16_t start = __HAL_TIM_GET_COUNTER(&htim1);
@@ -26,7 +32,57 @@ void Delay_TIM(uint16_t time){
 		__NOP();
 	}
 }
-/*Provizorní řešení, vyhledově snaha nahradit*/
+//vrací hodnotu renge flagu pro vyhudnocení v mainu
+uint8_t Range_down_flag(uint8_t channel)
+{
+    return range_down_flag[channel];
+}
+//přepne kanál zpět do 1A módu
+void Range_down(uint8_t channel){
+    if(channel == 0){
+        HAL_GPIO_WritePin(PROT2,1);
+        HAL_GPIO_WritePin(RELE2,0);
+        range[0]=0;
+        range_down_flag[0]=0;
+        Delay_TIM(20);
+        HAL_GPIO_WritePin(PROT2,0);
+
+        return;
+    }
+    if(channel ==1){
+        HAL_GPIO_WritePin(PROT1,1);
+        HAL_GPIO_WritePin(RELE1,0);
+        range[1]=0;
+        range_down_flag[1]=0;
+        Delay_TIM(20);
+        HAL_GPIO_WritePin(PROT1,0);
+        return;
+    }
+}
+
+int8_t HW_switch(uint8_t channel, int8_t status){
+    if(channel == 1){
+        if(HAL_GPIO_ReadPin(STAV_IN) == 1){
+            HAL_GPIO_WritePin(RIZENI_IN, status);
+            return 1;
+        }else{
+            HAL_GPIO_WritePin(RIZENI_IN, 0);
+            return -1;
+        }
+    }
+    else if(channel == 2){
+        if(HAL_GPIO_ReadPin(STAV_OUT) == 1){
+            HAL_GPIO_WritePin(RIZENI_OUT, status);
+            return 1;
+        }else{
+            HAL_GPIO_WritePin(RIZENI_OUT, 0);
+            return -1;
+        }
+    }
+    else{
+        return -1;
+    }
+}
 
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
@@ -66,12 +122,19 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
                 rangeOVF[1]=1;
                 return;
             }
-        /*}else{
-            //kanál je vypnutý, ochrana nereaguje
-            return;
-        }*/
 	}
+    if(GPIO_Pin == GPIO_PIN_3){
+    	//set_running.status=0;
+    	//HW_switch(2,0);
+    	//HW_switch(1,0);
+    }
+    if(GPIO_Pin == GPIO_PIN_5){
+    	//set_running.status=0;
+    	//HW_switch(2,0);
+    	//HW_switch(1,0);
+    }
 }
+
 
 uint8_t HW_range(uint8_t channel)
 {
@@ -108,29 +171,6 @@ uint8_t HW_init(void){
     return 0;
 }
 
-int8_t HW_switch(uint8_t channel, int8_t status){
-    if(channel == 1){
-        if(HAL_GPIO_ReadPin(STAV_IN) == 1){
-            HAL_GPIO_WritePin(RIZENI_IN, status);
-            return 1;
-        }else{
-            HAL_GPIO_WritePin(RIZENI_IN, 0);
-            return -1;
-        }
-    }
-    else if(channel == 2){
-        if(HAL_GPIO_ReadPin(STAV_OUT) == 1){
-            HAL_GPIO_WritePin(RIZENI_OUT, status);
-            return 1;
-        }else{
-            HAL_GPIO_WritePin(RIZENI_OUT, 0);
-            return -1;
-        }
-    }
-    else{
-        return -1;
-    }
-}
 
 
 float HW_voltage(uint8_t channel){
@@ -141,9 +181,13 @@ float HW_voltage(uint8_t channel){
 }
 
 float HW_current(uint8_t channel){
+
     ADS121X_MUX((channel*2), AGND);
     float tmp = ADS121X_Voltage(ADS121X_meas_sg(), 0, 0);
     float out = (tmp*tmp*CurrKoef[channel][range[channel]][2])+(tmp*CurrKoef[channel][range[channel]][1])+CurrKoef[channel][range[channel]][0];
+    if(range[channel]&&(out<0.75f)){
+        range_down_flag[channel]=1;
+    }
     return out;
 }
 

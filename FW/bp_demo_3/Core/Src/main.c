@@ -115,14 +115,22 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	    /*V předchozí konverzi došlo byl menší proud než 0,75A ale rozsah je 5A*/
+	    if(Range_down_flag(0)==1)
+	    {
+	      Range_down(0);
+	    }
+	    if(Range_down_flag(1)==1)
+	    {
+	      Range_down(1);
+	    }
+	    /*Přišla nová data*/
+		  if(is_new_data_ready){
+			  SCPI_Input(&scpi_context,(char*)UserRxBufferFS,  new_data_length);
+			  is_new_data_ready = 0;
+		  }
     /* USER CODE END WHILE */
-  /*  DMM_out I1 = DMM_Current(0);
-    DMM_out I2 = DMM_Current(1);
-    DrawPage1(I1.result,I2.result);*/
-	  if(is_new_data_ready){
-		  SCPI_Input(&scpi_context,(char*)UserRxBufferFS,  new_data_length);
-		  is_new_data_ready = 0;
-	  }
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
