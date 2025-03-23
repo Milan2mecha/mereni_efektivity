@@ -40,21 +40,24 @@ uint8_t Range_down_flag(uint8_t channel)
 //přepne kanál zpět do 1A módu
 void Range_down(uint8_t channel){
     if(channel == 0){
-        HAL_GPIO_WritePin(PROT2,1);
-        HAL_GPIO_WritePin(RELE2,0);
         range[0]=0;
+        HAL_GPIO_WritePin(PROT2,1);
+        Delay_TIM(5);
+        HAL_GPIO_WritePin(RELE2,0);
         range_down_flag[0]=0;
-        Delay_TIM(20);
+        Delay_TIM(10);
         HAL_GPIO_WritePin(PROT2,0);
 
         return;
     }
     if(channel ==1){
-        HAL_GPIO_WritePin(PROT1,1);
-        HAL_GPIO_WritePin(RELE1,0);
         range[1]=0;
+        HAL_GPIO_WritePin(PROT1,1);
+        Delay_TIM(5);
+        HAL_GPIO_WritePin(RELE1,0);
+        
         range_down_flag[1]=0;
-        Delay_TIM(20);
+        Delay_TIM(10);
         HAL_GPIO_WritePin(PROT1,0);
         return;
     }
@@ -89,11 +92,11 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 	if(GPIO_Pin == GPIO_PIN_1){
         //if(HAL_GPIO_ReadPin(RIZENI_IN)){
             if(range[0]==0){
-            	Delay_TIM(2);
+            	Delay_TIM(5);
                 HAL_GPIO_WritePin(PROT2,1);
                 range[0]=1;
                 HAL_GPIO_WritePin(RELE2,1);
-                Delay_TIM(20);//10ms rychlost sepnutí relé
+                Delay_TIM(30);//10ms rychlost sepnutí relé
                 HAL_GPIO_WritePin(PROT2,0);
                 return;
             }else{
@@ -108,12 +111,12 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
     if(GPIO_Pin == GPIO_PIN_0){
        // if(HAL_GPIO_ReadPin(RIZENI_OUT)){
             if(range[1]==0){
-            	Delay_TIM(2);
+            	Delay_TIM(5);
                 //Je na 1A rozsahu, přepíná na 5A
                 HAL_GPIO_WritePin(PROT1,1);
                 HAL_GPIO_WritePin(RELE1,1);
                 range[1]=1;
-                Delay_TIM(20);//10ms rychlost sepnutí relé
+                Delay_TIM(30);//10ms rychlost sepnutí relé
                 HAL_GPIO_WritePin(PROT1,0);
                 return;
             }else{
