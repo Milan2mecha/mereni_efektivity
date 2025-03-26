@@ -12,7 +12,7 @@
 	<Item Name="Private" Type="Folder">
 		<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
 		<Property Name="NI.SortType" Type="Int">3</Property>
-		<Item Name="Default Instrument Setup.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Private/Default Instrument Setup.vi"/>
+		<Item Name="Default Instrument Setup.vi" Type="VI" URL="../Private/Default Instrument Setup.vi"/>
 	</Item>
 	<Item Name="Public" Type="Folder">
 		<Property Name="NI.LibItem.Scope" Type="Int">1</Property>
@@ -39,20 +39,20 @@
 			</Item>
 			<Item Name="Data.mnu" Type="Document" URL="/&lt;instrlib&gt;/EFmeter/Public/Data/Data.mnu"/>
 			<Item Name="Read (Multiple Points).vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Data/Read (Multiple Points).vi"/>
-			<Item Name="Read (Single Point).vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Data/Read (Single Point).vi"/>
+			<Item Name="Read (Single Point).vi" Type="VI" URL="../Public/Data/Read (Single Point).vi"/>
 			<Item Name="Read.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Data/Read.vi"/>
 		</Item>
 		<Item Name="Utility" Type="Folder">
 			<Item Name="Utility.mnu" Type="Document" URL="/&lt;instrlib&gt;/EFmeter/Public/Utility/Utility.mnu"/>
-			<Item Name="Error Query.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Utility/Error Query.vi"/>
-			<Item Name="Reset.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Utility/Reset.vi"/>
+			<Item Name="Error Query.vi" Type="VI" URL="../Public/Utility/Error Query.vi"/>
+			<Item Name="Reset.vi" Type="VI" URL="../Public/Utility/Reset.vi"/>
 			<Item Name="Revision Query.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Utility/Revision Query.vi"/>
 			<Item Name="Self-Test.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Utility/Self-Test.vi"/>
-			<Item Name="SetMode.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/SetMode.vi"/>
+			<Item Name="SetMode.vi" Type="VI" URL="../SetMode.vi"/>
 		</Item>
 		<Item Name="dir.mnu" Type="Document" URL="/&lt;instrlib&gt;/EFmeter/Public/dir.mnu"/>
-		<Item Name="Close.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Close.vi"/>
-		<Item Name="Initialize.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Initialize.vi"/>
+		<Item Name="Close.vi" Type="VI" URL="../Public/Close.vi"/>
+		<Item Name="Initialize.vi" Type="VI" URL="../Public/Initialize.vi"/>
 		<Item Name="VI Tree.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/VI Tree.vi"/>
 	</Item>
 	<Item Name="EFmeter Readme.html" Type="Document" URL="/&lt;instrlib&gt;/EFmeter/EFmeter Readme.html"/>
