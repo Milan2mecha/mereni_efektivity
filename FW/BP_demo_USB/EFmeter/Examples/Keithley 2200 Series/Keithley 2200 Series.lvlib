@@ -18,10 +18,10 @@
 			<Item Name="Enable Digital Port.vi" Type="VI" URL="/&lt;instrlib&gt;/Keithley 2200 Series/Public/Action-Status/Enable Digital Port.vi"/>
 			<Item Name="Enable Output.vi" Type="VI" URL="../Public/Action-Status/Enable Output.vi"/>
 			<Item Name="Output Protection Status.vi" Type="VI" URL="/&lt;instrlib&gt;/Keithley 2200 Series/Public/Action-Status/Output Protection Status.vi"/>
-			<Item Name="Query Status.vi" Type="VI" URL="/&lt;instrlib&gt;/Keithley 2200 Series/Public/Action-Status/Query Status.vi"/>
+			<Item Name="Query Status.vi" Type="VI" URL="../Public/Action-Status/Query Status.vi"/>
 			<Item Name="Read List Name.vi" Type="VI" URL="/&lt;instrlib&gt;/Keithley 2200 Series/Public/Action-Status/Read List Name.vi"/>
 			<Item Name="Read List Operation.vi" Type="VI" URL="/&lt;instrlib&gt;/Keithley 2200 Series/Public/Action-Status/Read List Operation.vi"/>
-			<Item Name="Save-Recall Setup.vi" Type="VI" URL="/&lt;instrlib&gt;/Keithley 2200 Series/Public/Action-Status/Save-Recall Setup.vi"/>
+			<Item Name="Save-Recall Setup.vi" Type="VI" URL="../Public/Action-Status/Save-Recall Setup.vi"/>
 			<Item Name="Status Register.vi" Type="VI" URL="/&lt;instrlib&gt;/Keithley 2200 Series/Public/Action-Status/Status Register.vi"/>
 		</Item>
 		<Item Name="Configure" Type="Folder">
@@ -35,9 +35,9 @@
 			<Item Name="Configure List Step Parameter.vi" Type="VI" URL="/&lt;instrlib&gt;/Keithley 2200 Series/Public/Configure/Configure List Step Parameter.vi"/>
 			<Item Name="Configure Output Range.vi" Type="VI" URL="/&lt;instrlib&gt;/Keithley 2200 Series/Public/Configure/Configure Output Range.vi"/>
 			<Item Name="Configure Output.vi" Type="VI" URL="../Public/Configure/Configure Output.vi"/>
-			<Item Name="Configure OVP.vi" Type="VI" URL="/&lt;instrlib&gt;/Keithley 2200 Series/Public/Configure/Configure OVP.vi"/>
-			<Item Name="Configure Port.vi" Type="VI" URL="/&lt;instrlib&gt;/Keithley 2200 Series/Public/Configure/Configure Port.vi"/>
-			<Item Name="Configure Power Supply Mode.vi" Type="VI" URL="/&lt;instrlib&gt;/Keithley 2200 Series/Public/Configure/Configure Power Supply Mode.vi"/>
+			<Item Name="Configure OVP.vi" Type="VI" URL="../Public/Configure/Configure OVP.vi"/>
+			<Item Name="Configure Port.vi" Type="VI" URL="../Public/Configure/Configure Port.vi"/>
+			<Item Name="Configure Power Supply Mode.vi" Type="VI" URL="../Public/Configure/Configure Power Supply Mode.vi"/>
 			<Item Name="RI DFI Operation.vi" Type="VI" URL="/&lt;instrlib&gt;/Keithley 2200 Series/Public/Configure/RI DFI Operation.vi"/>
 		</Item>
 		<Item Name="Data" Type="Folder">
@@ -51,17 +51,17 @@
 			<Item Name="Configure Output Timer.vi" Type="VI" URL="/&lt;instrlib&gt;/Keithley 2200 Series/Public/Utility/Configure Output Timer.vi"/>
 			<Item Name="Control Mode.vi" Type="VI" URL="../Public/Utility/Control Mode.vi"/>
 			<Item Name="Error Query.vi" Type="VI" URL="../Public/Utility/Error Query.vi"/>
-			<Item Name="Reset.vi" Type="VI" URL="/&lt;instrlib&gt;/Keithley 2200 Series/Public/Utility/Reset.vi"/>
+			<Item Name="Reset.vi" Type="VI" URL="../Public/Utility/Reset.vi"/>
 			<Item Name="Revision Query.vi" Type="VI" URL="/&lt;instrlib&gt;/Keithley 2200 Series/Public/Utility/Revision Query.vi"/>
 		</Item>
 		<Item Name="Close.vi" Type="VI" URL="../Public/Close.vi"/>
-		<Item Name="Initialize.vi" Type="VI" URL="/&lt;instrlib&gt;/Keithley 2200 Series/Public/Initialize.vi"/>
+		<Item Name="Initialize.vi" Type="VI" URL="../Public/Initialize.vi"/>
 		<Item Name="VI Tree.vi" Type="VI" URL="/&lt;instrlib&gt;/Keithley 2200 Series/Public/VI Tree.vi"/>
 		<Item Name="dir.mnu" Type="Document" URL="/&lt;instrlib&gt;/Keithley 2200 Series/Public/dir.mnu"/>
 	</Item>
 	<Item Name="Private" Type="Folder">
 		<Property Name="NI.LibItem.Scope" Type="Int">2</Property>
-		<Item Name="Default Instrument Setup.vi" Type="VI" URL="/&lt;instrlib&gt;/Keithley 2200 Series/Private/Default Instrument Setup.vi"/>
+		<Item Name="Default Instrument Setup.vi" Type="VI" URL="../Private/Default Instrument Setup.vi"/>
 	</Item>
 	<Item Name="Keithley 2200 Series Readme.html" Type="Document" URL="/&lt;instrlib&gt;/Keithley 2200 Series/Keithley 2200 Series Readme.html"/>
 </Library>
