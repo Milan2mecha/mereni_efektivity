@@ -134,38 +134,34 @@ scpi_result_t DMM_ConfigureSR(scpi_t * context){
     return SCPI_RES_OK;
 }
 
-scpi_result_t DMM_Continous(scpi_t * context){
+scpi_result_t DMM_ContinousQ(scpi_t * context){
     int32_t param;
     SCPI_ParamInt32(context, &param, TRUE);
     return SCPI_RES_OK;
 }
-scpi_result_t DMM_ConfigureQ(scpi_t * context){
+
+
+
+scpi_result_t DMM_SRATeQ(scpi_t * context){
+    DMM_set tmp  = DMM_Status();
+    SCPI_ResultInt32(context, tmp.sampleRate);
+    return SCPI_RES_OK;
+}
+scpi_result_t DMM_FetchCurrentQ(scpi_t * context){
+    uint32_t channel;
+    SCPI_CommandNumbers(context, *channel, 1);
+    return SCPI_RES_OK;
+}
+scpi_result_t DMM_FetchVoltageQ(scpi_t * context){
+    uint32_t channel;
+    SCPI_CommandNumbers(context, *channel, 1);
+    return SCPI_RES_OK;
+}
+scpi_result_t DMM_CONTinous(scpi_t * context){
     int32_t param;
     if (!SCPI_ParamChoice(context, conf_param, &param, TRUE)) {
         return SCPI_RES_ERR;
     }
-    DMM_set tmp  = DMM_Status();
-    switch(param){
-    case 0:
-    SCPI_ResultInt32(context, tmp.sampleRate);
-    break;
-    case 1:
-    SCPI_ResultInt32(context, tmp.continous);
-    break;
-    case 2:
-    SCPI_ResultInt32(context, tmp.autoRange);
-    break;
-    default:
-    SCPI_ErrorPush(context, -200);
-    return SCPI_RES_ERR;
-    break;
-    }
-    return SCPI_RES_OK;
-}
-
-scpi_result_t DMM_FetchVoltageQ(scpi_t * context){
-    return SCPI_RES_OK;
-}
-scpi_result_t DMM_FetchCurrentQ(scpi_t * context){
+    DMM_Continous(param);
     return SCPI_RES_OK;
 }

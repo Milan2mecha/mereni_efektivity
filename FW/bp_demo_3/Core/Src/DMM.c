@@ -84,7 +84,22 @@ DMM_out DMM_Power(uint8_t channel){
     return out;
 }
 
-void DMM_SRate(uint16_t SR){
-    set_running.sampleRate = SR;
+
+
+void DMM_Continous(uint32_t status){
+    set_running.continous = (uint8_t)status;
     return;
+}
+
+void DMM_SRate(uint32_t SR){
+    if(ADS121X_DR((uint16_t)SR)){
+        
+    }else{
+    set_running.sampleRate =(uint16_t) SR;
+    }
+    return;
+}
+
+double DMM_Fetch(uint32_t channel){
+    return data_last[channel];
 }

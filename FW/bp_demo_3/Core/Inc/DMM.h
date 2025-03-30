@@ -25,3 +25,5 @@ DMM_out DMM_Current(uint8_t channel);
 DMM_out DMM_Power(uint8_t channel);
 
 void DMM_SRate(uint16_t SR);
+void DMM_Continous(uint32_t status);
+double DMM_Fetch(uint32_t channel);
