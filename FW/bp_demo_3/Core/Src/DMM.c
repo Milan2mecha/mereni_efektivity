@@ -91,7 +91,7 @@ void DMM_Continous(uint32_t status){
     return;
 }
 
-void DMM_SRate(uint32_t SR){
+void DMM_SRate(uint16_t SR){
     if(ADS121X_DR((uint16_t)SR)){
         
     }else{

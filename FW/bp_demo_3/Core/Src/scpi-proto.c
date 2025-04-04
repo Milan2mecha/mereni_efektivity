@@ -57,13 +57,13 @@ scpi_result_t SYS_MODEQ(scpi_t * context){
 /*                  DMM - prototypes            */
 /*----------------------------------------------*/
 scpi_result_t DMM_MeasureVoltageDcQ(scpi_t * context) {
-    int32_t param;
-    SCPI_ParamInt32(context, &param, TRUE);
-    if((param != 1 )&&(param != 2)){
+    int32_t channel;
+    SCPI_CommandNumbers(context, &channel, 1,0);
+    if((channel != 1 )&&(channel != 2)){
         SCPI_ErrorPush(context, -224);
         return SCPI_RES_ERR;
     }
-    DMM_out out = DMM_Voltage((uint8_t)param-1);
+    DMM_out out = DMM_Voltage((uint8_t)channel-1);
     if(out.status != 1){
         SCPI_ErrorPush(context, -200);
         return SCPI_RES_ERR;
@@ -77,13 +77,13 @@ scpi_result_t DMM_MeasureVoltageDcQ(scpi_t * context) {
     return SCPI_RES_OK;
 }
 scpi_result_t DMM_MeasureCurrentDcQ(scpi_t * context) {
-    int32_t param;
-    SCPI_ParamInt32(context, &param, TRUE);
-    if((param != 1 )&&(param != 2)){
+    int32_t channel;
+    SCPI_CommandNumbers(context, &channel, 1,0);
+    if((channel != 1 )&&(channel != 2)){
         SCPI_ErrorPush(context, -224);
         return SCPI_RES_ERR;
     }
-    DMM_out out = DMM_Current((uint8_t)param-1);
+    DMM_out out = DMM_Current((uint8_t)channel-1);
     if(out.status != 1){
         SCPI_ErrorPush(context, -200);
         return SCPI_RES_ERR;
@@ -97,13 +97,13 @@ scpi_result_t DMM_MeasureCurrentDcQ(scpi_t * context) {
 }
 
 scpi_result_t DMM_MeasurePowerQ(scpi_t * context){
-    int32_t param;
-    SCPI_ParamInt32(context, &param, TRUE);
-    if((param != 1 )&&(param != 2)){
+    int32_t channel;
+    SCPI_CommandNumbers(context, &channel, 1,0);
+    if((channel != 1 )&&(channel != 2)){
         SCPI_ErrorPush(context, -224);
         return SCPI_RES_ERR;
     }
-    DMM_out out = DMM_Power((uint8_t)param-1);
+    DMM_out out = DMM_Power((uint8_t)channel-1);
     if(out.status != 1){
         SCPI_ErrorPush(context, -200);
         return SCPI_RES_ERR;
@@ -148,13 +148,21 @@ scpi_result_t DMM_SRATeQ(scpi_t * context){
     return SCPI_RES_OK;
 }
 scpi_result_t DMM_FetchCurrentQ(scpi_t * context){
-    uint32_t channel;
-    SCPI_CommandNumbers(context, *channel, 1);
+    int32_t channel;
+    SCPI_CommandNumbers(context, &channel, 1,0);
+    if((channel != 1 )&&(channel != 2)){
+        SCPI_ErrorPush(context, -224);
+        return SCPI_RES_ERR;
+    }
     return SCPI_RES_OK;
 }
 scpi_result_t DMM_FetchVoltageQ(scpi_t * context){
-    uint32_t channel;
-    SCPI_CommandNumbers(context, *channel, 1);
+    int32_t channel;
+    SCPI_CommandNumbers(context, &channel, 1,0);
+    if((channel != 1 )&&(channel != 2)){
+        SCPI_ErrorPush(context, -224);
+        return SCPI_RES_ERR;
+    }
     return SCPI_RES_OK;
 }
 scpi_result_t DMM_CONTinous(scpi_t * context){
