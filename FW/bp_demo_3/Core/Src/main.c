@@ -108,7 +108,7 @@ int main(void)
               SCPI_IDN1, SCPI_IDN2, SCPI_IDN3, SCPI_IDN4,
               scpi_input_buffer, SCPI_INPUT_BUFFER_LENGTH,
               scpi_error_queue_data, SCPI_ERROR_QUEUE_SIZE);
-  DrawPage1(0.69,69);
+  DrawSCPI();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -129,6 +129,9 @@ int main(void)
 			  SCPI_Input(&scpi_context,(char*)UserRxBufferFS,  new_data_length);
 			  is_new_data_ready = 0;
 		  }
+      if(HW_status()){
+        DMM_Disable();
+      }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

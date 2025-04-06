@@ -116,12 +116,6 @@ scpi_result_t DMM_MeasurePowerQ(scpi_t * context){
     return SCPI_RES_OK;
 }
 
-static scpi_choice_def_t conf_param[] = {
-    {"SRAT", 0},
-    {"CONT", 1},
-    {"AUTO", 2},
-    SCPI_CHOICE_LIST_END /* termination of option list */
-};
 
 scpi_result_t DMM_ConfigureSR(scpi_t * context){
     int32_t param;
@@ -163,11 +157,21 @@ scpi_result_t DMM_FetchVoltageQ(scpi_t * context){
         SCPI_ErrorPush(context, -224);
         return SCPI_RES_ERR;
     }
+    DMM_out out = DMM_Fetch_volt((uint8_t)channel);
+    if(out.status != 1){
+        SCPI_ErrorPush(context, -200);
+        return SCPI_RES_ERR;
+    }
+    if(out.error != 0){
+        SCPI_ErrorPush(context, -200);
+        return SCPI_RES_ERR;
+    }
+    SCPI_ResultDouble(context, out.result);
     return SCPI_RES_OK;
 }
 scpi_result_t DMM_CONTinous(scpi_t * context){
     int32_t param;
-    if (!SCPI_ParamChoice(context, conf_param, &param, TRUE)) {
+    if (!SCPI_ParamInt32(context, &param, TRUE)) {
         return SCPI_RES_ERR;
     }
     DMM_Continous(param);

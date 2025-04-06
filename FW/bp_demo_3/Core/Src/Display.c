@@ -57,3 +57,10 @@ void DrawPage1(float row1, float row2){
     }
     SSD1306_UpdateScreen();
 }
+void DrawSCPI()
+{
+    SSD1306_Clear();
+    SSD1306_GotoXY (10,21);
+    SSD1306_Puts("USB-SCPI", &Font_11x18, 1);
+    SSD1306_UpdateScreen();
+}

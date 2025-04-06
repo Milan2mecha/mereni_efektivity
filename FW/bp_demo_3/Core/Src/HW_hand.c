@@ -87,6 +87,10 @@ int8_t HW_switch(uint8_t channel, int8_t status){
     }
 }
 
+uint8_t HW_SR(uint16_t SR){
+    return ADS121X_DR(SR);
+}
+
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 	if(GPIO_Pin == GPIO_PIN_1){
