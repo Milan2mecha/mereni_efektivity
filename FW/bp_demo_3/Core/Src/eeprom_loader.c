@@ -7,6 +7,7 @@ typedef union {
     
  }Data;
 
+
 void save_to_eeprom(uint16_t pos, double data){
     Data tmp;
     tmp.out = data;
@@ -20,4 +21,9 @@ double read_form_eeprom(uint16_t pos){
         EE_ReadVariable(VirtAddVarTab[pos+i], &tmp.eeprom[i]);
     }
     return tmp.out;
+}
+void param_to_eeprom(uint16_t pos, double data1, double data2, double data3){
+    save_to_eeprom(pos, data1);
+    save_to_eeprom(pos+4, data2);
+    save_to_eeprom(pos+8, data3);
 }

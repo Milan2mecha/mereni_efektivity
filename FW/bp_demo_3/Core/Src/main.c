@@ -26,10 +26,12 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "scpi/scpi.h"
-#include "display.h"
+#include "Display.h"
 #include "HW_hand.h"
 #include "DMM.h"
 #include "scpi-def.h"
+#include "eeprom.h"
+#include "eeprom_loader.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -130,6 +132,7 @@ int main(void)
               scpi_input_buffer, SCPI_INPUT_BUFFER_LENGTH,
               scpi_error_queue_data, SCPI_ERROR_QUEUE_SIZE);
   DrawSCPI();
+  load_EEPROM();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -153,7 +156,7 @@ int main(void)
       if(HW_status()){
         DMM_Disable();
       }
-      if(DMM_ContinousQ()!=0){
+      if(DMM_modeContinous()!=0){
         last_ch = DMM_Asyncsample(last_ch);
       }
     /* USER CODE END WHILE */

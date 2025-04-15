@@ -25,6 +25,11 @@ DMM_out DMM_Voltage(uint8_t channel);
 DMM_out DMM_Current(uint8_t channel);
 DMM_out DMM_Power(uint8_t channel);
 
+DMM_out DMM_Fetch_volt(uint32_t channel);
+DMM_out DMM_Fetch_current(uint32_t channel);
+
+
 void DMM_SRate(uint16_t SR);
 void DMM_Continous(uint32_t status);
-DMM_out DMM_Fetch_volt(uint32_t channel);
+uint8_t DMM_modeContinous();
+uint8_t DMM_Asyncsample(uint8_t channel);

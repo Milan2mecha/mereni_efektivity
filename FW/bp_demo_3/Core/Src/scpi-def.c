@@ -142,6 +142,10 @@ const scpi_command_t scpi_commands[] = {
     {.pattern = "FETCh:VOLTage#?",.callback = DMM_FetchVoltageQ,},
     {.pattern = "FETCh:CURRent#?",.callback = DMM_FetchCurrentQ,},
     {.pattern = "SENSe:SRATe?",.callback = DMM_ConfigureSR,},
+    {.pattern = "CALibrate:ICURrent#",.callback = CAL_Icur,},
+    {.pattern = "CALibrate:OCURrent#",.callback = CAL_Ocur,},
+    {.pattern = "CALibrate:IVOLtage",.callback = CAL_Ivol,},
+    {.pattern = "CALibrate:OVOLtage",.callback = CAL_Ovol,},
     SCPI_CMD_LIST_END
     };
 

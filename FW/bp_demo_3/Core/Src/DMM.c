@@ -1,13 +1,16 @@
 #include "HW_hand.h"
 #include "DMM.h"
 #include <stdint.h>
+#include <float.h>
 
 
 
-const DMM_set defaultSet = {0,0,20,0,{0,0,0,0}};
-DMM_set set_running = defaultSet;
-double data_last[2][2];
+const DMM_set defaultSet = {0,0,20,0,{0,0,0,0}};    //výchozí nastavení
+DMM_set set_running = defaultSet;   //inicializace
+double data_last[2][2];     //buffer posledních naměřených hodnot
 
+
+//pomocná funkce zjišťující zda je zařízení v defaultním nastavení
 uint8_t nDefaltQ(){
     if(set_running.autoRange!=defaultSet.autoRange){
         return 1;
@@ -20,17 +23,19 @@ uint8_t nDefaltQ(){
     }
     return 0;
 }
+//Naství při běhu zařízení do defaultního režimu
 void setdefault()
 {
     DMM_SRate(defaultSet.sampleRate);
     set_running.autoRange = defaultSet.autoRange;
     set_running.continous = defaultSet.continous;
 }
+//funkce vracející aktuální nastavení DMM
 DMM_set DMM_Status(void)
 {
     return set_running;
 }
-
+//Zapnutí DMM
 uint8_t DMM_Enable(void)
 {
         //calori_disable
@@ -47,6 +52,7 @@ uint8_t DMM_Enable(void)
     set_running.status = 1;
     return 1;
 }
+//Vypnutí DMM
 uint8_t DMM_Disable(void){
     if(HW_switch(1,0)!=1){
         return -1;
@@ -61,7 +67,11 @@ uint8_t DMM_Disable(void){
     return 1;
 }
 
+/*-------------------------------------------*/
+/*          Měření                           */
+/*-------------------------------------------*/
 
+//Napětí
 DMM_out DMM_Voltage(uint8_t channel){
     DMM_out out;
     DMM_set tmp;
@@ -84,7 +94,7 @@ DMM_out DMM_Voltage(uint8_t channel){
     }
     return out;
 }
-
+//Proud
 DMM_out DMM_Current(uint8_t channel){
     DMM_out out;
     DMM_set tmp;
@@ -107,6 +117,7 @@ DMM_out DMM_Current(uint8_t channel){
     }
     return out;
 }
+//Výkon
 DMM_out DMM_Power(uint8_t channel){
     DMM_out out;
     DMM_set tmp;
@@ -131,20 +142,10 @@ DMM_out DMM_Power(uint8_t channel){
 }
 
 
+/*-------------------------------------------*/
+/*       Fetch subsystem                     */
+/*-------------------------------------------*/
 
-void DMM_Continous(uint32_t status){
-    set_running.continous = (uint8_t)status;
-    return;
-}
-
-void DMM_SRate(uint16_t SR){
-    if(HW_SR((uint16_t)SR)){
-        
-    }else{
-    set_running.sampleRate =(uint16_t) SR;
-    }
-    return;
-}
 
 DMM_out DMM_Fetch_volt(uint32_t channel){
     DMM_out out;
@@ -167,6 +168,7 @@ DMM_out DMM_Fetch_volt(uint32_t channel){
         return out;
     }
 }
+
 DMM_out DMM_Fetch_current(uint32_t channel){
     DMM_out out;
     if(set_running.continous){
@@ -189,10 +191,38 @@ DMM_out DMM_Fetch_current(uint32_t channel){
     }
 }
 
-uint8_t DMM_ContinousQ()
+
+
+/*-------------------------------------------*/
+/*       Nastavování parametrů měření        */
+/*-------------------------------------------*/
+
+//zapnutí vypnutí continous
+void DMM_Continous(uint32_t status){
+    set_running.continous = (uint8_t)status;
+    return;
+}
+
+//nastavení samplerate
+void DMM_SRate(uint16_t SR){
+    if(HW_SR((uint16_t)SR)){
+        
+    }else{
+    set_running.sampleRate =(uint16_t) SR;
+    }
+    return;
+}
+
+//vrátí zda je zařízení v continous
+uint8_t DMM_modeContinous()
 {
     return set_running.continous;
 }
+
+//*------------------------------------------*/
+/*      Neblokující vzorkování               */
+/*-------------------------------------------*/
+
 uint8_t DMM_Asyncsample(uint8_t channel){
     float tmp;
     tmp = HW_async_get();

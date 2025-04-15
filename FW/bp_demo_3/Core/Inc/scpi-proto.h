@@ -13,3 +13,7 @@ scpi_result_t DMM_ContinousQ(scpi_t * context);
 scpi_result_t DMM_FetchCurrentQ(scpi_t * context);
 scpi_result_t DMM_FetchVoltageQ(scpi_t * context);
 scpi_result_t DMM_SRATeQ(scpi_t * context);
+scpi_result_t CAL_Ovol(scpi_t * context);
+scpi_result_t CAL_Ivol(scpi_t * context);
+scpi_result_t CAL_Ocur(scpi_t * context);
+scpi_result_t CAL_Icur(scpi_t * context);
