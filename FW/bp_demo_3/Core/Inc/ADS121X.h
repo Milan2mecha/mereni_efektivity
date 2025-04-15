@@ -22,4 +22,6 @@ uint8_t ADS121X_WREG(uint8_t);
 
 int32_t ADS121X_meas_ct(void);
 int32_t ADS121X_meas_sg(void);
+float ADS121X_Voltage_getAsync();
 float ADS121X_Voltage(int32_t, uint8_t, uint8_t);
+

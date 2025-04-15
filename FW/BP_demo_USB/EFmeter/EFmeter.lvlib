@@ -23,37 +23,36 @@
 		<Item Name="Configure" Type="Folder">
 			<Item Name="Low Level" Type="Folder">
 				<Item Name="Configure_Low Level.mnu" Type="Document" URL="/&lt;instrlib&gt;/EFmeter/Public/Configure/Low Level/Configure_Low Level.mnu"/>
-				<Item Name="Configure Multipoint.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Configure/Low Level/Configure Multipoint.vi"/>
-				<Item Name="Configure Trigger.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Configure/Low Level/Configure Trigger.vi"/>
+				<Item Name="Configure Multipoint.vi" Type="VI" URL="../Public/Configure/Low Level/Configure Multipoint.vi"/>
+				<Item Name="Configure Trigger.vi" Type="VI" URL="../Public/Configure/Low Level/Configure Trigger.vi"/>
 			</Item>
 			<Item Name="Configure.mnu" Type="Document" URL="/&lt;instrlib&gt;/EFmeter/Public/Configure/Configure.mnu"/>
-			<Item Name="Configure Autozero.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Configure/Configure Autozero.vi"/>
-			<Item Name="Configure Measurement.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Configure/Configure Measurement.vi"/>
+			<Item Name="Configure Autozero.vi" Type="VI" URL="../Public/Configure/Configure Autozero.vi"/>
+			<Item Name="Configure Measurement.vi" Type="VI" URL="../Public/Configure/Configure Measurement.vi"/>
 		</Item>
 		<Item Name="Data" Type="Folder">
 			<Item Name="Low Level" Type="Folder">
 				<Item Name="Data_Low Level.mnu" Type="Document" URL="/&lt;instrlib&gt;/EFmeter/Public/Data/Low Level/Data_Low Level.mnu"/>
-				<Item Name="Fetch Multiple Points.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Data/Low Level/Fetch Multiple Points.vi"/>
-				<Item Name="Initiate.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Data/Low Level/Initiate.vi"/>
-				<Item Name="Send Software Trigger.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Data/Low Level/Send Software Trigger.vi"/>
+				<Item Name="Fetch Multiple Points.vi" Type="VI" URL="../Public/Data/Low Level/Fetch Multiple Points.vi"/>
+				<Item Name="Initiate.vi" Type="VI" URL="../Public/Data/Low Level/Initiate.vi"/>
+				<Item Name="Send Software Trigger.vi" Type="VI" URL="../Public/Data/Low Level/Send Software Trigger.vi"/>
 			</Item>
 			<Item Name="Data.mnu" Type="Document" URL="/&lt;instrlib&gt;/EFmeter/Public/Data/Data.mnu"/>
-			<Item Name="Read (Multiple Points).vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Data/Read (Multiple Points).vi"/>
 			<Item Name="Read (Single Point).vi" Type="VI" URL="../Public/Data/Read (Single Point).vi"/>
-			<Item Name="Read.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Data/Read.vi"/>
+			<Item Name="Read.vi" Type="VI" URL="../Public/Data/Read.vi"/>
 		</Item>
 		<Item Name="Utility" Type="Folder">
 			<Item Name="Utility.mnu" Type="Document" URL="/&lt;instrlib&gt;/EFmeter/Public/Utility/Utility.mnu"/>
 			<Item Name="Error Query.vi" Type="VI" URL="../Public/Utility/Error Query.vi"/>
 			<Item Name="Reset.vi" Type="VI" URL="../Public/Utility/Reset.vi"/>
-			<Item Name="Revision Query.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Utility/Revision Query.vi"/>
-			<Item Name="Self-Test.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Utility/Self-Test.vi"/>
+			<Item Name="Revision Query.vi" Type="VI" URL="../Public/Utility/Revision Query.vi"/>
+			<Item Name="Self-Test.vi" Type="VI" URL="../Public/Utility/Self-Test.vi"/>
 			<Item Name="SetMode.vi" Type="VI" URL="../SetMode.vi"/>
 		</Item>
 		<Item Name="dir.mnu" Type="Document" URL="/&lt;instrlib&gt;/EFmeter/Public/dir.mnu"/>
 		<Item Name="Close.vi" Type="VI" URL="../Public/Close.vi"/>
 		<Item Name="Initialize.vi" Type="VI" URL="../Public/Initialize.vi"/>
-		<Item Name="VI Tree.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/VI Tree.vi"/>
+		<Item Name="VI Tree.vi" Type="VI" URL="../Public/VI Tree.vi"/>
 	</Item>
 	<Item Name="EFmeter Readme.html" Type="Document" URL="/&lt;instrlib&gt;/EFmeter/EFmeter Readme.html"/>
 </Library>

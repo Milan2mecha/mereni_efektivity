@@ -1,6 +1,12 @@
 #include "gpio.h"
 #include "i2c.h"
 
+#define U1_ee 0
+#define U2_ee 72
+#define I11_ee 24
+#define I12_ee 48
+#define I21_ee 96
+#define I22_ee 120
 
 uint8_t HW_range(uint8_t channel);
 uint8_t HW_status(void);
@@ -12,3 +18,6 @@ void Range_down(uint8_t channel);
 uint8_t Range_down_flag(uint8_t channel);
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
 uint8_t HW_SR(uint16_t SR);
+float HW_async_get();
+void HW_async_current_start(uint8_t channel);
+void HW_async_volt_start(uint8_t channel);

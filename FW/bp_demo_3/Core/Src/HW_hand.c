@@ -5,6 +5,8 @@
 #include "tim.h"
 #include "DMM.h"
 #include "display.h"
+#include "eeprom.h"
+#include "eeprom_loader.h"
 
 #define PROT1 GPIOB,GPIO_PIN_12
 #define PROT2 GPIOB,GPIO_PIN_14
@@ -15,14 +17,36 @@
 #define RELE1 GPIOB,GPIO_PIN_13
 #define RELE2 GPIOB,GPIO_PIN_15
 
-const float CurrKoef[2][2][3] = {{{0.0004,0.5168,-0.0002},{0.0008,2.5362,-0.0126}},{{0.0004,0.5168,-0.0002},{0.0008,2.5362,-0.0126}}}; //rozsah1A, rozsah5A -> absolutní,lineární,kvadratický
-const float VoltKoef[2][3] = {{0.0708,15.122,-0.0688},{0.0708,15.122,-0.0688}}; //absolutní,lineární,kvadratický
+float CurrKoef[2][2][3] = {{{0.0004,0.5168,-0.0002},{0.0008,2.5362,-0.0126}},{{0.0004,0.5168,-0.0002},{0.0008,2.5362,-0.0126}}}; //rozsah1A, rozsah5A -> absolutní,lineární,kvadratický
+float VoltKoef[2][3] = {{0.0708,15.122,-0.0688},{0.0708,15.122,-0.0688}}; //absolutní,lineární,kvadratický
 
 uint8_t range[]={0,0}; //0=1A,1=5A
 uint8_t rangeOVF[]={0,0};//přetečení rozsahu
 uint8_t range_down_flag[]={0,0};
 
 extern DMM_set set_running;
+
+/*načítání dat z eeprom do proměnných*/
+void load_EEPROM(){
+    for(uint8_t i = 0;i<3;i++){
+        VoltKoef[0][i] = double read_form_eeprom(U1_ee+(4*i));
+    }
+    for(uint8_t i = 0;i<3;i++){
+        VoltKoef[1][i] = double read_form_eeprom(U2_ee+(4*i));
+    }
+    for(uint8_t i = 0;i<3;i++){
+        CurrKoef[0][0][i] = double read_form_eeprom(I11_ee+(4*i));
+    }
+    for(uint8_t i = 0;i<3;i++){
+        CurrKoef[0][1][i] = double read_form_eeprom(I12_ee+(4*i));
+    }
+    for(uint8_t i = 0;i<3;i++){
+        CurrKoef[1][0][i] = double read_form_eeprom(I21_ee+(4*i));
+    }
+    for(uint8_t i = 0;i<3;i++){
+        CurrKoef[1][1][i] = double read_form_eeprom(I22_ee+(4*i));
+    }
+}
 
 /*blokující delay s časovačem*/
 void Delay_TIM(uint16_t time){
@@ -130,16 +154,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
                 return;
             }
 	}
-    if(GPIO_Pin == GPIO_PIN_3){
-    	//set_running.status=0;
-    	//HW_switch(2,0);
-    	//HW_switch(1,0);
-    }
-    if(GPIO_Pin == GPIO_PIN_5){
-    	//set_running.status=0;
-    	//HW_switch(2,0);
-    	//HW_switch(1,0);
-    }
+
 }
 
 
@@ -162,6 +177,8 @@ uint8_t HW_status(void){
     }
     return 0;
 }
+
+
 
 uint8_t HW_init(void){
     //Nastaví rozsah
@@ -198,3 +215,22 @@ float HW_current(uint8_t channel){
     return out;
 }
 
+void HW_async_volt_start(uint8_t channel){
+    ADS121X_MUX((channel*2)+1, AGND);
+    ADS121X_start();
+}
+void HW_async_current_start(uint8_t channel){
+    ADS121X_MUX((channel*2), AGND);
+    ADS121X_start();
+}
+
+float HW_async_get(){
+    float tmp;
+    if(ADS121X_ready()!=0){
+        tmp = ADS121X_Voltage(ADS121X_Voltage_getAsync(),0,0);
+        return tmp;
+    }else{
+        tmp = FLT_MIN;
+        return tmp;
+    }
+}

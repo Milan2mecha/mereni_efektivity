@@ -281,6 +281,16 @@ int32_t ADS121X_meas_ct(){
   return tmp;
 }
 
+
+float ADS121X_Voltage_getAsync()
+{
+  uint32_t tmp;
+  
+  tmp = ADS121X_read();
+  tmp -= offset;
+  return tmp;
+
+}
 float ADS121X_Voltage(int32_t ADC, uint8_t GRAIN, uint8_t VREF){
       float out = ADC;
       if(VREF == 0){

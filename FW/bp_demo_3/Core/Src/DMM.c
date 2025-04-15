@@ -189,4 +189,32 @@ DMM_out DMM_Fetch_current(uint32_t channel){
     }
 }
 
-
+uint8_t DMM_ContinousQ()
+{
+    return set_running.continous;
+}
+uint8_t DMM_Asyncsample(uint8_t channel){
+    float tmp;
+    tmp = HW_async_get();
+    if(tmp!=FLT_MIN){
+        data_last[channel%2][channel/2] = tmp;
+        //hledá další aktivní kanál (pokud nenajde zůstane na stejném)
+        uint8_t channel_tmp = channel + 1;
+        channel_tmp = channel_tmp % 4;
+        while(set_running.activeChannels[channel_tmp]==0){
+            channel ++;
+            channel = channel%4;
+            if(channel_tmp == channel){
+                break;
+            }
+        }
+        channel = channel_tmp;
+        if(channel%2){
+            HW_async_current_start(channel/2);
+        }else{
+            HW_async_volt_start(channel/2);
+        }
+        return (channel);
+    }
+    return channel;
+}
