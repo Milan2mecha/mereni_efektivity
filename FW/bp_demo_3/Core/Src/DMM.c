@@ -71,7 +71,7 @@ uint8_t BTES_Disable(void){
     return 1;
 }
 //Zapnutí BTES
-uint8_t DMM_Enable(void)
+uint8_t BTES_Enable(void)
 {
 	HW_init();
     set_running = defaultSet;
