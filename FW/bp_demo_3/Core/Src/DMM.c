@@ -42,7 +42,7 @@ uint8_t DMM_Enable(void)
     HAL_Delay(100);
         //calori_disable
     HW_switch(1,1);
-    HAL_Delay(100);
+    HAL_Delay(180);
     HW_switch(2,1);
     set_running = defaultSet;
     set_running.mode = 1;
@@ -68,6 +68,11 @@ uint8_t BTES_Enable(void)
     set_running.status = 1;
     return 1;
 }
+
+/*-------------------------------------------*/
+/*          Ovládání kanálů BTES             */
+/*-------------------------------------------*/
+//OFF
 uint8_t BTES_OFF(){
     if((set_running.status==0)||(set_running.mode!=2)){
         return 0;
@@ -76,13 +81,17 @@ uint8_t BTES_OFF(){
     HW_switch(2,0);
     return 1;
 }
+//IN
 uint8_t BTES_IN(){
     if((set_running.status==0)||(set_running.mode!=2)){
         return 0;
     }
     BTES_OFF();
+    HAL_Delay(100);
     return HW_switch(1,1);
+
 }
+//OUT
 uint8_t BTES_OUT(){
     if((set_running.status==0)||(set_running.mode!=2)){
         return 0;

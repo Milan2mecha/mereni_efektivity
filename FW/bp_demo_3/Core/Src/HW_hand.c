@@ -57,7 +57,6 @@ void load_EEPROM(){
 }
 
 double get_koef(uint8_t U_I, uint8_t channel, uint8_t rozsah, uint8_t koef){
-    //return read_form_eeprom(koef*4);
    if(U_I == 0){
         //napeti
         return (double)VoltKoef[channel][koef];
