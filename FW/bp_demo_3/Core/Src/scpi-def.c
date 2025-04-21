@@ -39,6 +39,7 @@
 #include "scpi-def.h"
 #include "scpi-proto.h"
 #include "usb_device.h"
+#include "Display.h"
 
 
 /**
@@ -65,6 +66,8 @@
 	    char errs[50];
 	    sprintf(errs, "**ERROR: %d, \"%s\"\r\n", (int16_t) err, SCPI_ErrorTranslate(err));
 	    CDC_Transmit_FS(errs, strlen(errs)+1);
+        DrawERR((uint16_t)err);
+        
 	    return 0;
 	}
 
@@ -118,11 +121,7 @@ const scpi_command_t scpi_commands[] = {
     {.pattern = "SYSTem:ERRor:COUNt?", .callback = SCPI_SystemErrorCountQ,},
     {.pattern = "SYSTem:VERSion?", .callback = SCPI_SystemVersionQ,},
 
-    /* {.pattern = "STATus:OPERation?", .callback = scpi_stub_callback,}, */
-    /* {.pattern = "STATus:OPERation:EVENt?", .callback = scpi_stub_callback,}, */
-    /* {.pattern = "STATus:OPERation:CONDition?", .callback = scpi_stub_callback,}, */
-    /* {.pattern = "STATus:OPERation:ENABle", .callback = scpi_stub_callback,}, */
-    /* {.pattern = "STATus:OPERation:ENABle?", .callback = scpi_stub_callback,}, */
+
 
     {.pattern = "STATus:QUEStionable[:EVENt]?", .callback = SCPI_StatusQuestionableEventQ,},
     /* {.pattern = "STATus:QUEStionable:CONDition?", .callback = scpi_stub_callback,}, */
@@ -146,6 +145,10 @@ const scpi_command_t scpi_commands[] = {
     {.pattern = "CALibrate:OCURrent#",.callback = CAL_Ocur,},
     {.pattern = "CALibrate:IVOLtage",.callback = CAL_Ivol,},
     {.pattern = "CALibrate:OVOLtage",.callback = CAL_Ovol,},
+    {.pattern = "CALibrate:ICURrent#?",.callback = CAL_IcurQ,},
+    {.pattern = "CALibrate:OCURrent#?",.callback = CAL_OcurQ,},
+    {.pattern = "CALibrate:IVOLtage?",.callback = CAL_IvolQ,},
+    {.pattern = "CALibrate:OVOLtage?",.callback = CAL_OvolQ,},
     SCPI_CMD_LIST_END
     };
 

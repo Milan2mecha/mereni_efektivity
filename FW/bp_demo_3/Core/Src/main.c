@@ -120,6 +120,8 @@ int main(void)
   MX_I2C1_Init();
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
+  HAL_FLASH_Unlock();
+  EE_Init();
   HAL_TIM_Base_Start(&htim1);
   HW_init();
   //DMM_Enable();

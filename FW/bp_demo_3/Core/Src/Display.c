@@ -64,3 +64,14 @@ void DrawSCPI()
     SSD1306_Puts("USB-SCPI", &Font_11x18, 1);
     SSD1306_UpdateScreen();
 }
+void DrawERR(int16_t error)
+{
+    char str[7] = {0};
+    SSD1306_Clear();
+    SSD1306_GotoXY (10,3);
+    SSD1306_Puts("Error:", &Font_11x18, 1);
+    SSD1306_GotoXY (10,25);
+    itoa(error,&str[strlen(str)],10);
+    SSD1306_Puts(str, &Font_11x18, 1);
+    SSD1306_UpdateScreen();
+}

@@ -12,6 +12,7 @@ typedef struct{
 typedef struct{
     uint8_t status;
     uint8_t autoRange; //0-on 1-off
+    uint8_t mode; //0-off 1-dmm 2-btes
     uint16_t sampleRate;
     uint8_t continous;
     uint8_t activeChannels[4];//v ch1,I ch1,V ch2,I_ch2
@@ -33,3 +34,4 @@ void DMM_SRate(uint16_t SR);
 void DMM_Continous(uint32_t status);
 uint8_t DMM_modeContinous();
 uint8_t DMM_Asyncsample(uint8_t channel);
+

@@ -5,9 +5,9 @@
 
 
 
-const DMM_set defaultSet = {0,0,20,0,{0,0,0,0}};    //výchozí nastavení
+const DMM_set defaultSet = {0,0,0,20,0,{1,1,1,1}};    //výchozí nastavení
 DMM_set set_running = defaultSet;   //inicializace
-double data_last[2][2];     //buffer posledních naměřených hodnot
+volatile float data_last[2][2];     //buffer posledních naměřených hodnot
 
 
 //pomocná funkce zjišťující zda je zařízení v defaultním nastavení
@@ -38,32 +38,45 @@ DMM_set DMM_Status(void)
 //Zapnutí DMM
 uint8_t DMM_Enable(void)
 {
+	HW_init();
+    HAL_Delay(100);
         //calori_disable
-    if(HW_switch(1,1)!=1){
-        return -1;
-    }
-    if(HW_switch(2,1)!=1){
-        return -1;
-    }
-    if(HW_status() !=0){
-        return -1;
-    }
+    HW_switch(1,1);
+    HAL_Delay(100);
+    HW_switch(2,1);
     set_running = defaultSet;
+    set_running.mode = 1;
     set_running.status = 1;
     return 1;
 }
-//Vypnutí DMM
+//Vypnutí BTES
 uint8_t DMM_Disable(void){
-    if(HW_switch(1,0)!=1){
-        return -1;
-    }
-    if(HW_switch(2,0)!=1){
-        return -1;
-    }
+    HW_switch(1,0);
+    HW_switch(2,0);
     if(HW_status() !=0){
         return -1;
     }
+    set_running.mode = 0;
     set_running.status = 0;
+    return 1;
+}
+uint8_t BTES_Disable(void){
+    HW_switch(1,0);
+    HW_switch(2,0);
+    if(HW_status() !=0){
+        return -1;
+    }
+    set_running.mode = 0;
+    set_running.status = 0;
+    return 1;
+}
+//Zapnutí BTES
+uint8_t DMM_Enable(void)
+{
+	HW_init();
+    set_running = defaultSet;
+    set_running.mode = 2;
+    set_running.status = 1;
     return 1;
 }
 
@@ -155,7 +168,7 @@ DMM_out DMM_Fetch_volt(uint32_t channel){
         if(out.error != 0){
             return out;
         }
-        out.result = data_last[0][channel];
+        out.result =(double) data_last[0][channel];
         return out;
     }else{
         out.status = set_running.status;
@@ -163,8 +176,8 @@ DMM_out DMM_Fetch_volt(uint32_t channel){
         if(out.error != 0){
             return out;
         }
-        data_last[0][channel] = (double) HW_voltage(channel);
-        out.result = data_last[0][channel];
+        data_last[0][channel] =  HW_voltage(channel);
+        out.result = (double)data_last[0][channel];
         return out;
     }
 }
@@ -185,7 +198,7 @@ DMM_out DMM_Fetch_current(uint32_t channel){
         if(out.error != 0){
             return out;
         }
-        data_last[1][channel] = (double) HW_current(channel);
+        data_last[1][channel] =  HW_current(channel);
         out.result = data_last[1][channel];
         return out;
     }
@@ -200,6 +213,21 @@ DMM_out DMM_Fetch_current(uint32_t channel){
 //zapnutí vypnutí continous
 void DMM_Continous(uint32_t status){
     set_running.continous = (uint8_t)status;
+    if(status !=0){
+        uint8_t channel_tmp = 0;
+        while(set_running.activeChannels[channel_tmp]==0){
+           channel_tmp ++;
+           channel_tmp = channel_tmp%4;
+            if(channel_tmp == 0){
+                break;
+            }
+        }
+        if(channel_tmp%2){
+            HW_async_current_start(channel_tmp/2);
+        }else{
+            HW_async_volt_start(channel_tmp/2);
+        }
+    }
     return;
 }
 
@@ -225,15 +253,15 @@ uint8_t DMM_modeContinous()
 
 uint8_t DMM_Asyncsample(uint8_t channel){
     float tmp;
-    tmp = HW_async_get();
-    if(tmp!=FLT_MIN){
-        data_last[channel%2][channel/2] = tmp;
+    tmp = HW_async_get(channel);
+    if(tmp<100){
+        data_last[channel%2][channel/2] = (float)tmp;
         //hledá další aktivní kanál (pokud nenajde zůstane na stejném)
         uint8_t channel_tmp = channel + 1;
         channel_tmp = channel_tmp % 4;
         while(set_running.activeChannels[channel_tmp]==0){
-            channel ++;
-            channel = channel%4;
+            channel_tmp ++;
+            channel_tmp = channel_tmp%4;
             if(channel_tmp == channel){
                 break;
             }
@@ -245,6 +273,7 @@ uint8_t DMM_Asyncsample(uint8_t channel){
             HW_async_volt_start(channel/2);
         }
         return (channel);
-    }
+    }else{
     return channel;
+    }
 }

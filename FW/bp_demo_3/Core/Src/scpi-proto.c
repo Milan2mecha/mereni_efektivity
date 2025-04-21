@@ -135,7 +135,7 @@ scpi_result_t DMM_FetchCurrentQ(scpi_t * context){
         SCPI_ErrorPush(context, -224);
         return SCPI_RES_ERR;
     }
-    DMM_out out = DMM_Fetch_current((uint8_t)channel);
+    DMM_out out = DMM_Fetch_current((uint8_t)channel-1);
     if(out.status != 1){
         SCPI_ErrorPush(context, -200);
         return SCPI_RES_ERR;
@@ -155,7 +155,7 @@ scpi_result_t DMM_FetchVoltageQ(scpi_t * context){
         SCPI_ErrorPush(context, -224);
         return SCPI_RES_ERR;
     }
-    DMM_out out = DMM_Fetch_volt((uint8_t)channel);
+    DMM_out out = DMM_Fetch_volt((uint8_t)channel-1);
     if(out.status != 1){
         SCPI_ErrorPush(context, -200);
         return SCPI_RES_ERR;
@@ -203,8 +203,8 @@ scpi_result_t DMM_CONTinous(scpi_t * context){
 
 //continous?
 scpi_result_t DMM_ContinousQ(scpi_t * context){
-    int32_t param;
-    SCPI_ParamInt32(context, &param, TRUE);
+    DMM_set tmp  = DMM_Status();
+    SCPI_ResultInt32(context, tmp.continous);
     return SCPI_RES_OK;
 }
 
@@ -293,5 +293,64 @@ scpi_result_t CAL_Ovol(scpi_t * context){
     }
     param_to_eeprom(U1_ee, param1, param2, param3);
     load_EEPROM();
+    return SCPI_RES_OK;
+}
+
+/*----------------------------------------------------------*/
+/*              Čtení z eeprom                              */
+/*----------------------------------------------------------*/
+
+scpi_result_t CAL_OvolQ(scpi_t * context){
+    uint32_t param;
+    if (!SCPI_ParamUInt32(context, &param, TRUE)) {
+        return SCPI_RES_ERR;
+    }
+    SCPI_ResultDouble(context,get_koef(0,0,0,(uint8_t)param));
+    return SCPI_RES_OK;
+}
+scpi_result_t CAL_IvolQ(scpi_t * context){
+    uint32_t param;
+    if (!SCPI_ParamUInt32(context, &param, TRUE)) {
+        return SCPI_RES_ERR;
+    }
+    SCPI_ResultDouble(context,get_koef(0,1,0,(uint8_t)param));
+    return SCPI_RES_OK;
+}
+scpi_result_t CAL_IcurQ(scpi_t * context){
+    int32_t range;
+    SCPI_CommandNumbers(context, &range, 1,0);
+    if((range!=1)&&(range!=5)){
+        return SCPI_RES_ERR;
+    }
+    if(range==1){
+        range = 0;
+    }
+    if(range==5){
+        range = 1;
+    }
+    uint32_t param1;
+    if (!SCPI_ParamUInt32(context, &param1, TRUE)) {
+        return SCPI_RES_ERR;
+    }
+    SCPI_ResultDouble(context,get_koef(1,1,(uint8_t)range,(uint8_t)param1));
+    return SCPI_RES_OK;
+}
+scpi_result_t CAL_OcurQ(scpi_t * context){
+    int32_t range;
+    SCPI_CommandNumbers(context, &range, 1,0);
+    if((range!=1)&&(range!=5)){
+        return SCPI_RES_ERR;
+    }
+    if(range==1){
+        range = 0;
+    }
+    if(range==5){
+        range = 1;
+    }
+    uint32_t param1;
+    if (!SCPI_ParamUInt32(context, &param1, TRUE)) {
+        return SCPI_RES_ERR;
+    }
+    SCPI_ResultDouble(context,get_koef(1,0,(uint8_t)range,(uint8_t)param1));
     return SCPI_RES_OK;
 }

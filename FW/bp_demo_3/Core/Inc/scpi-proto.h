@@ -17,3 +17,7 @@ scpi_result_t CAL_Ovol(scpi_t * context);
 scpi_result_t CAL_Ivol(scpi_t * context);
 scpi_result_t CAL_Ocur(scpi_t * context);
 scpi_result_t CAL_Icur(scpi_t * context);
+scpi_result_t CAL_OvolQ(scpi_t * context);
+scpi_result_t CAL_IvolQ(scpi_t * context);
+scpi_result_t CAL_OcurQ(scpi_t * context);
+scpi_result_t CAL_IcurQ(scpi_t * context);

@@ -18,8 +18,8 @@
 #define RELE1 GPIOB,GPIO_PIN_13
 #define RELE2 GPIOB,GPIO_PIN_15
 
-float CurrKoef[2][2][3]; //rozsah1A, rozsah5A -> absolutní,lineární,kvadratický
-float VoltKoef[2][3]; //absolutní,lineární,kvadratický
+volatile float CurrKoef[2][2][3] = {{{0,1,0},{0,1,0}},{{0,1,0},{0,1,0}}}; //rozsah1A, rozsah5A -> absolutní,lineární,kvadratický
+volatile float VoltKoef[2][3] = {{0,1,0},{0,1,0}}; //absolutní,lineární,kvadratický
 
 uint8_t range[]={0,0}; //0=1A,1=5A
 uint8_t rangeOVF[]={0,0};//přetečení rozsahu
@@ -35,7 +35,7 @@ extern DMM_set set_running;
 
 /*načítání dat z eeprom do proměnných*/
 void load_EEPROM(){
-    for(uint8_t i = 0;i<3;i++){
+   for(uint8_t i = 0;i<3;i++){
         VoltKoef[0][i] = read_form_eeprom(U1_ee+(4*i));
     }
     for(uint8_t i = 0;i<3;i++){
@@ -52,6 +52,17 @@ void load_EEPROM(){
     }
     for(uint8_t i = 0;i<3;i++){
         CurrKoef[1][1][i] = read_form_eeprom(I22_ee+(4*i));
+    }
+        
+}
+
+double get_koef(uint8_t U_I, uint8_t channel, uint8_t rozsah, uint8_t koef){
+    //return read_form_eeprom(koef*4);
+   if(U_I == 0){
+        //napeti
+        return (double)VoltKoef[channel][koef];
+    }else{
+        return (double)CurrKoef[channel][rozsah][koef];
     }
 }
 
@@ -193,13 +204,21 @@ void HW_async_current_start(uint8_t channel){
 }
 
 //vyčtení asynchronního měření
-float HW_async_get(){
+float HW_async_get(uint8_t channel){
     float tmp;
+    float out;
     if(ADS121X_ready()!=0){
         tmp = ADS121X_Voltage(ADS121X_Voltage_getAsync(),0,0);
-        return tmp;
+        if(channel%2){
+            channel = (channel-1)/2;
+            out = (tmp*tmp*CurrKoef[channel][range[channel]][2])+(tmp*CurrKoef[channel][range[channel]][1])+CurrKoef[channel][range[channel]][0]; 
+        }else{
+            channel = (channel/2);
+            out = (tmp*tmp*VoltKoef[channel][2])+(tmp*VoltKoef[channel][1])+VoltKoef[channel][0];
+        }
+        return out;
     }else{
-        tmp = FLT_MIN;
+        tmp = FLT_MAX;
         return tmp;
     }
 }
@@ -211,7 +230,7 @@ float HW_async_get(){
 //spínání vstupních relé
 int8_t HW_switch(uint8_t channel, int8_t status){
     if(channel == 1){
-        if(HAL_GPIO_ReadPin(STAV_IN) == 1){
+        if(HAL_GPIO_ReadPin(STAV_IN) != 0){
             HAL_GPIO_WritePin(RIZENI_IN, status);
             return 1;
         }else{
@@ -220,7 +239,7 @@ int8_t HW_switch(uint8_t channel, int8_t status){
         }
     }
     else if(channel == 2){
-        if(HAL_GPIO_ReadPin(STAV_OUT) == 1){
+        if(HAL_GPIO_ReadPin(STAV_OUT) != 0){
             HAL_GPIO_WritePin(RIZENI_OUT, status);
             return 1;
         }else{

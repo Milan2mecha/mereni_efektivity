@@ -15,12 +15,12 @@ void save_to_eeprom(uint16_t pos, double data){
     EE_WriteVariable(VirtAddVarTab[pos+i],tmp.eeprom[i]);
     }
 }
-double read_form_eeprom(uint16_t pos){
+float read_form_eeprom(uint16_t pos){
     Data tmp;
     for(uint8_t i=0; i<4;i++){
         EE_ReadVariable(VirtAddVarTab[pos+i], &tmp.eeprom[i]);
     }
-    return tmp.out;
+    return (float)tmp.out;
 }
 void param_to_eeprom(uint16_t pos, double data1, double data2, double data3){
     save_to_eeprom(pos, data1);

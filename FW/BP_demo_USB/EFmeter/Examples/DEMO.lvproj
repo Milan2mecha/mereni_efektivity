@@ -1,5 +1,6 @@
 ﻿<?xml version='1.0' encoding='UTF-8'?>
 <Project Type="Project" LVVersion="24008000">
+	<Property Name="NI.LV.All.SaveVersion" Type="Str">24.0</Property>
 	<Property Name="NI.LV.All.SourceOnly" Type="Bool">true</Property>
 	<Item Name="My Computer" Type="My Computer">
 		<Property Name="server.app.propertiesEnabled" Type="Bool">true</Property>
@@ -11,20 +12,29 @@
 		<Property Name="server.vi.callsEnabled" Type="Bool">true</Property>
 		<Property Name="server.vi.propertiesEnabled" Type="Bool">true</Property>
 		<Property Name="specify.custom.address" Type="Bool">false</Property>
-		<Item Name="DEMO.vi" Type="VI" URL="../DEMO.vi"/>
+		<Item Name="zatezovaci_charakteristika.vi" Type="VI" URL="../zatezovaci_charakteristika.vi"/>
 		<Item Name="Dependencies" Type="Dependencies">
 			<Item Name="instr.lib" Type="Folder">
-				<Item Name="EFmeter.lvlib" Type="Library" URL="/&lt;instrlib&gt;/EFmeter/EFmeter.lvlib"/>
+				<Item Name="Configure Output.vi" Type="VI" URL="/&lt;instrlib&gt;/Zatez Kopper/Public/Configure/Configure Output.vi"/>
+				<Item Name="Configure OVP.vi" Type="VI" URL="/&lt;instrlib&gt;/Zatez Kopper/Public/Configure/Configure OVP.vi"/>
+				<Item Name="Output Protection Status.vi" Type="VI" URL="/&lt;instrlib&gt;/Zatez Kopper/Public/Action-Status/Output Protection Status.vi"/>
+				<Item Name="Read Output.vi" Type="VI" URL="/&lt;instrlib&gt;/Zatez Kopper/Public/Data/Read Output.vi"/>
+				<Item Name="Reset Output Protection.vi" Type="VI" URL="/&lt;instrlib&gt;/Zatez Kopper/Public/Action-Status/Reset Output Protection.vi"/>
+				<Item Name="Zatez Kopper.lvlib" Type="Library" URL="/&lt;instrlib&gt;/Zatez Kopper/Zatez Kopper.lvlib"/>
 			</Item>
 			<Item Name="vi.lib" Type="Folder">
 				<Item Name="Dynamic To Waveform Array.vi" Type="VI" URL="/&lt;vilib&gt;/express/express shared/transition.llb/Dynamic To Waveform Array.vi"/>
 				<Item Name="Error Cluster From Error Code.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Error Cluster From Error Code.vi"/>
 				<Item Name="ex_CorrectErrorChain.vi" Type="VI" URL="/&lt;vilib&gt;/express/express shared/ex_CorrectErrorChain.vi"/>
 				<Item Name="FormatTime String.vi" Type="VI" URL="/&lt;vilib&gt;/express/express execution control/ElapsedTimeBlock.llb/FormatTime String.vi"/>
+				<Item Name="NI_AALBase.lvlib" Type="Library" URL="/&lt;vilib&gt;/Analysis/NI_AALBase.lvlib"/>
 				<Item Name="subBuildXYGraph.vi" Type="VI" URL="/&lt;vilib&gt;/express/express controls/BuildXYGraphBlock.llb/subBuildXYGraph.vi"/>
 				<Item Name="subElapsedTime.vi" Type="VI" URL="/&lt;vilib&gt;/express/express execution control/ElapsedTimeBlock.llb/subElapsedTime.vi"/>
 				<Item Name="Waveform Array To Dynamic.vi" Type="VI" URL="/&lt;vilib&gt;/express/express shared/transition.llb/Waveform Array To Dynamic.vi"/>
 			</Item>
+			<Item Name="BK Precision 8500B Series.lvlib" Type="Library" URL="../BK Precision 8500B Series/BK Precision 8500B Series.lvlib"/>
+			<Item Name="EFmeter.lvlib" Type="Library" URL="../../EFmeter.lvlib"/>
+			<Item Name="lvanlys.dll" Type="Document" URL="/&lt;resource&gt;/lvanlys.dll"/>
 		</Item>
 		<Item Name="Build Specifications" Type="Build">
 			<Item Name="DEMO" Type="EXE">
@@ -55,7 +65,7 @@
 				<Property Name="Source[0].itemID" Type="Str">{717A8243-4A60-42B7-9B77-A3C37C37548A}</Property>
 				<Property Name="Source[0].type" Type="Str">Container</Property>
 				<Property Name="Source[1].destinationIndex" Type="Int">0</Property>
-				<Property Name="Source[1].itemID" Type="Ref">/My Computer/DEMO.vi</Property>
+				<Property Name="Source[1].itemID" Type="Ref">/My Computer/zatezovaci_charakteristika.vi</Property>
 				<Property Name="Source[1].sourceInclusion" Type="Str">TopLevel</Property>
 				<Property Name="Source[1].type" Type="Str">VI</Property>
 				<Property Name="SourceCount" Type="Int">2</Property>

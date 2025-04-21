@@ -6,5 +6,5 @@
 #define I22_ee 120
 
 void save_to_eeprom(uint16_t pos, double data);
-double read_form_eeprom(uint16_t pos);
+float read_form_eeprom(uint16_t pos);
 void param_to_eeprom(uint16_t pos, double data1, double data2, double data3);
