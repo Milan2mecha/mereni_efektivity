@@ -32,7 +32,12 @@ scpi_result_t SYS_MODE(scpi_t * context){
             return SCPI_RES_ERR;
         }
         break;
-    
+    case 2:
+            if(BTES_Enable()!=1){
+            SCPI_ErrorPush(context, -200);
+            return SCPI_RES_ERR;
+        }
+        break;
     default:
             if(DMM_Disable()!=1){
             SCPI_ErrorPush(context, -200);
@@ -44,12 +49,48 @@ scpi_result_t SYS_MODE(scpi_t * context){
     return SCPI_RES_OK;                                      
 }
 
+static scpi_choice_def_t BTES_list[] = {
+    {"OFF", 0},
+    {"IN", 1},
+    {"OUT", 2},
+    SCPI_CHOICE_LIST_END /* termination of option list */
+};
+
+scpi_result_t BTES_MODE(scpi_t * context){
+    int32_t param;
+    if (!SCPI_ParamChoice(context, BTES_list, &param, TRUE)) {
+        return SCPI_RES_ERR;
+    }
+    switch (param)
+    {
+    case 1:
+            if(BTES_IN()!=1){
+            SCPI_ErrorPush(context, -200);
+            return SCPI_RES_ERR;
+        }
+        break;
+    case 2:
+            if(BTES_OUT()!=1){
+            SCPI_ErrorPush(context, -200);
+            return SCPI_RES_ERR;
+        }
+        break;
+    default:
+            if(BTES_OUT()!=1){
+            SCPI_ErrorPush(context, -200);
+            return SCPI_RES_ERR;
+        }
+        break;
+    }
+
+    return SCPI_RES_OK;                                      
+}
 //sysmode?
 scpi_result_t SYS_MODEQ(scpi_t * context){
     DMM_set tmp_DMM  = DMM_Status();
-    if(tmp_DMM.status){
+    if((tmp_DMM.mode==1)&&(tmp_DMM.status==1)){
         SCPI_ResultMnemonic(context, "DMM");
-    }else if(0){
+    }else if((tmp_DMM.mode==2)&&(tmp_DMM.status==1)){
         SCPI_ResultMnemonic(context, "BTES");
     } else
     {
@@ -71,10 +112,12 @@ scpi_result_t DMM_MeasureVoltageDcQ(scpi_t * context) {
     }
     DMM_out out = DMM_Voltage((uint8_t)channel-1);
     if(out.status != 1){
+        DMM_Disable();
         SCPI_ErrorPush(context, -200);
         return SCPI_RES_ERR;
     }
     if(out.error != 0){
+        DMM_Disable();
         SCPI_ErrorPush(context, -200);
         return SCPI_RES_ERR;
     }
@@ -92,10 +135,12 @@ scpi_result_t DMM_MeasureCurrentDcQ(scpi_t * context) {
     }
     DMM_out out = DMM_Current((uint8_t)channel-1);
     if(out.status != 1){
+        DMM_Disable();
         SCPI_ErrorPush(context, -200);
         return SCPI_RES_ERR;
     }
     if(out.error != 0){
+        DMM_Disable();
         SCPI_ErrorPush(context, -200);
         return SCPI_RES_ERR;
     }
@@ -112,10 +157,12 @@ scpi_result_t DMM_MeasurePowerQ(scpi_t * context){
     }
     DMM_out out = DMM_Power((uint8_t)channel-1);
     if(out.status != 1){
+        DMM_Disable();
         SCPI_ErrorPush(context, -200);
         return SCPI_RES_ERR;
     }
     if(out.error != 0){
+        DMM_Disable();
         SCPI_ErrorPush(context, -200);
         return SCPI_RES_ERR;
     }
@@ -137,10 +184,12 @@ scpi_result_t DMM_FetchCurrentQ(scpi_t * context){
     }
     DMM_out out = DMM_Fetch_current((uint8_t)channel-1);
     if(out.status != 1){
+        DMM_Disable();
         SCPI_ErrorPush(context, -200);
         return SCPI_RES_ERR;
     }
     if(out.error != 0){
+        DMM_Disable();
         SCPI_ErrorPush(context, -200);
         return SCPI_RES_ERR;
     }
@@ -157,10 +206,12 @@ scpi_result_t DMM_FetchVoltageQ(scpi_t * context){
     }
     DMM_out out = DMM_Fetch_volt((uint8_t)channel-1);
     if(out.status != 1){
+        DMM_Disable();
         SCPI_ErrorPush(context, -200);
         return SCPI_RES_ERR;
     }
     if(out.error != 0){
+        DMM_Disable();
         SCPI_ErrorPush(context, -200);
         return SCPI_RES_ERR;
     }

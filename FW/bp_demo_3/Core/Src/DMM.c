@@ -49,37 +49,47 @@ uint8_t DMM_Enable(void)
     set_running.status = 1;
     return 1;
 }
-//Vypnutí BTES
+//Vypnutí DMM
 uint8_t DMM_Disable(void){
     HW_switch(1,0);
     HW_switch(2,0);
-    if(HW_status() !=0){
-        return -1;
-    }
     set_running.mode = 0;
     set_running.status = 0;
     return 1;
 }
-uint8_t BTES_Disable(void){
-    HW_switch(1,0);
-    HW_switch(2,0);
-    if(HW_status() !=0){
-        return -1;
-    }
-    set_running.mode = 0;
-    set_running.status = 0;
-    return 1;
-}
+
 //Zapnutí BTES
 uint8_t BTES_Enable(void)
 {
+    DMM_Disable();
 	HW_init();
     set_running = defaultSet;
     set_running.mode = 2;
     set_running.status = 1;
     return 1;
 }
-
+uint8_t BTES_OFF(){
+    if((set_running.status==0)||(set_running.mode!=2)){
+        return 0;
+    }
+    HW_switch(1,0);
+    HW_switch(2,0);
+    return 1;
+}
+uint8_t BTES_IN(){
+    if((set_running.status==0)||(set_running.mode!=2)){
+        return 0;
+    }
+    BTES_OFF();
+    return HW_switch(1,1);
+}
+uint8_t BTES_OUT(){
+    if((set_running.status==0)||(set_running.mode!=2)){
+        return 0;
+    }
+    BTES_OFF();
+    return HW_switch(2,1);
+}
 /*-------------------------------------------*/
 /*          Měření                           */
 /*-------------------------------------------*/

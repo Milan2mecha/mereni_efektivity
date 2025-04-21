@@ -131,7 +131,7 @@ const scpi_command_t scpi_commands[] = {
 
     {.pattern = "SYStem:MODE?", .callback = SYS_MODEQ,},
     {.pattern = "SYStem:MODE", .callback = SYS_MODE,},
-
+    {.pattern = "BTESt:CHANnel", .callback = BTES_MODE,},
     /* DMM */
     {.pattern = "MEASure:VOLTage#?", .callback = DMM_MeasureVoltageDcQ,},
     {.pattern = "MEASure:CURRent#?", .callback = DMM_MeasureCurrentDcQ,},
@@ -140,7 +140,9 @@ const scpi_command_t scpi_commands[] = {
     {.pattern = "SENSe:CONTinous",.callback = DMM_CONTinous,},
     {.pattern = "FETCh:VOLTage#?",.callback = DMM_FetchVoltageQ,},
     {.pattern = "FETCh:CURRent#?",.callback = DMM_FetchCurrentQ,},
-    {.pattern = "SENSe:SRATe?",.callback = DMM_ConfigureSR,},
+    {.pattern = "SENSe:SRATe?",.callback = DMM_SRATeQ,},
+
+    /*kalibrace*/
     {.pattern = "CALibrate:ICURrent#",.callback = CAL_Icur,},
     {.pattern = "CALibrate:OCURrent#",.callback = CAL_Ocur,},
     {.pattern = "CALibrate:IVOLtage",.callback = CAL_Ivol,},

@@ -22,6 +22,11 @@ DMM_set DMM_Status(void);
 uint8_t DMM_Enable(void);
 uint8_t DMM_Disable(void);
 
+uint8_t BTES_Enable(void);
+uint8_t BTES_IN();
+uint8_t BTES_OUT();
+uint8_t BTES_OFF();
+
 DMM_out DMM_Voltage(uint8_t channel);
 DMM_out DMM_Current(uint8_t channel);
 DMM_out DMM_Power(uint8_t channel);

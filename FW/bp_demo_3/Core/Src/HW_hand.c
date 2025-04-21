@@ -270,14 +270,17 @@ uint8_t HW_range(uint8_t channel)
 
 //čtení statusu ochran
 uint8_t HW_status(void){
-    if(HAL_GPIO_ReadPin(STAV_IN) == 0){
-        HAL_GPIO_WritePin(RIZENI_IN, 0);
-        return 1;
+    if(HAL_GPIO_ReadPin(RIZENI_IN) == 1){
+        if(HAL_GPIO_ReadPin(STAV_IN) == 0){
+            HAL_GPIO_WritePin(RIZENI_IN, 0);
+            return 1;
     }
-    if(HAL_GPIO_ReadPin(STAV_OUT) == 0){
-        HAL_GPIO_WritePin(RIZENI_OUT, 0);
-        return 1;
     }
+    if(HAL_GPIO_ReadPin(RIZENI_OUT) == 1){
+        if(HAL_GPIO_ReadPin(STAV_OUT) == 0){
+            HAL_GPIO_WritePin(RIZENI_OUT, 0);
+            return 1;
+    }}
     if((rangeOVF[0]==1) || (rangeOVF[1]==1)){
         return 2;
     }
