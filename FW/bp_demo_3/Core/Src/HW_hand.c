@@ -83,6 +83,10 @@ uint8_t HW_init(void){
     //Nastaví rozsah
     HAL_GPIO_WritePin(RELE1, 0);
     HAL_GPIO_WritePin(RELE2, 0);
+    range[0]=0;
+    range[1]=0;
+    rangeOVF[0]=0;
+    rangeOVF[1]=0;
     //reset PROT
     HAL_GPIO_WritePin(PROT1, 1);
     HAL_GPIO_WritePin(PROT2, 1);

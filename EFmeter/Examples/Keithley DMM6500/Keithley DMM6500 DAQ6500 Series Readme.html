@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+  <title>Instrument Driver Readme</title>
+  <style type="text/css">
+  dt { float: left; margin-right: 5px; }
+  </style>
+</head>
+<body>
+<h1>Keithley DMM6500 DAQ6500 Series Instrument Driver Readme</h1>
+<p>To rate this instrument driver, go to the driver download page on the <a href="http://www.ni.com/idnet">Instrument Driver Network</a>.</p>
+<h2>1. Overview</h2>
+<dl>
+<dt>Instrument Driver Technology:</dt> <dd>LabVIEW Plug and Play (project-style)</dd>
+<dt>Manufacturer:</dt><dd>Keithley<br></dd>
+<dt>Supported Language(s):</dt><dd>LabVIEW</dd>
+<dt>Supported Model(s):</dt><dd>DAQ6510,DMM6500<br></dd>
+<dt>Model(s) Tested:</dt><dd>DAQ6510<br></dd>
+<dt>Interface(s):</dt><dd>USB,GPIB,Ethernet<br></dd>
+<dt>Firmware Revision(s) Tested:</dt><dd>0.8.6h<br></dd></dl>
+<dl>
+<dt>Certified:</dt><dd>Yes</dd>
+<dt>NI Supported:</dt><dd>Yes</dd>
+<dt>Source Code Available:</dt><dd>Yes</dd>
+</dl>
+<dl>
+<dt>Driver Revision:</dt><dd> 1.2</dd>
+<dt>Original Release Date:</dt><dd>04/16/2018</dd>
+<dt>Current Revision Date:</dt><dd>07/08/2021</dd>
+</dl>
+
+<h2>2. Required Software</h2>
+<p>Some software components need to be installed before using this instrument driver. The minimum versions of these components are listed
+below, and can be downloaded from the Download Site.</p>
+<p> VISA 5.0 or later</p>
+<p>Refer to the <i>LabVIEW Help</i> for more information about software requirements. You access the <i>LabVIEW Help</i> by selecting <i>Help»LabVIEW Help</i>.</p>
+
+<h2>3. Known Issues</h2>
+
+
+<p>To report issues or provide feedback about this instrument driver,  <a href="http://www.ni.com/en-us/support.html">please contact technical support</a>.</p>
+
+
+<p>1. Configure Digitize.vi returns error when specifying channel list.</p>
+<p>2. Note: The KTTI accessory was not available during development, so VIs supporting this functionality were not tested.
+
+<p></p>
+
+<h2>4. Revision History</h2>
+<p>The latest version of this and other LabVIEW and LabWindows/CVI instrument drivers can be downloaded at the <a href="http://www.ni.com/idnet">Instrument Driver Network</a>.</p>
+<p><br>
+REV 1.0, 04/16/2018<br>Modified by: Zhengyu Ju, Shanghai.<br>Original release.</p>
+<p><br>
+REV 1.1, 12/13/2019<br>
+Modified by: Xuedan Zhao, Shanghai.<br>
+<br>
+Added Examples:<br>
+Keithley DMM6500 DAQ6500 Dual Digitizer for Wide Current Range.vi<br>
+Keithley DMM6500 DAQ6500 Series Digitizing to Obtain Average Current.vi<br>
+<br>
+Added VIs:<br>
+Configure Digital IO Line Mode.vi<br>
+Configure Digital Trigger Input Line.vi<br>
+Fetch (Multiple Binary Data).vi<br>
+Configure Data Format.vi<br>
+Configure Byte Order.vi<br>
+Get Buffer Actual Readings Count.vi<br>
+Clear Buffer Statistics.vi<br>
+Get Buffer Statistics.vi<br>
+Clear Text on User Swipe Screen.vi<br>
+Display User Text Message.vi<br>
+Select Display Screen.vi<br>
+Set Display Brightness.vi<br>
+Set Display Digits.vi<br>
+Set Display Reading Format.vi<br>
+<br>
+Modified VI:<br>
+Configure Measurement.vi - Fixed bugs of not handling digitize functions properly and indices passed into case structure incorrect.<br>
+<br>
+REV 1.1, 11/10/2020<br>Modified by: Abdul Jaleel, Bengaluru.<br>Updated <b>Configure Measurement.vi</b> to have new line when autorange is enabled.</p>
+<br>
+REV 1.2, 07/08/2021<br>Modified by: Josh Brown, Keithley.<br>Updated <b>Configure Measurement.vi</b> to have non-default option screen out function selections 6, 8, 9, 10, and 11.<br>
+Updated <b>Read (Multiple Points).vi</b> to add a Get Full Buffer boolean option. <br>
+<br>
+Added VI:<br>
+Get Scan Step Count.vi<br>
+</body></html>

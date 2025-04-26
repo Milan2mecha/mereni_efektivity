@@ -76,7 +76,7 @@ scpi_result_t BTES_MODE(scpi_t * context){
         }
         break;
     default:
-            if(BTES_OUT()!=1){
+            if(BTES_OFF()!=1){
             SCPI_ErrorPush(context, -200);
             return SCPI_RES_ERR;
         }
