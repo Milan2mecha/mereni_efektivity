@@ -45,7 +45,7 @@
 			<Item Name="Reset.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Utility/Reset.vi"/>
 		</Item>
 		<Item Name="dir.mnu" Type="Document" URL="/&lt;instrlib&gt;/EFmeter/Public/dir.mnu"/>
-		<Item Name="Close.vi" Type="VI" URL="../../../../../škola/BP_data/FW/BP_demo_USB/EFmeter/Public/Close.vi"/>
+		<Item Name="Close.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Close.vi"/>
 		<Item Name="Initialize.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Initialize.vi"/>
 		<Item Name="VI Tree.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/VI Tree.vi"/>
 	</Item>
