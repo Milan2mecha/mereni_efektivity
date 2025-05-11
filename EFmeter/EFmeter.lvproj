@@ -14,6 +14,7 @@
 			<Item Name="kalibrace.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Examples/kalibrace.vi"/>
 			<Item Name="Dodana_energie.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Examples/Dodana_energie.vi"/>
 			<Item Name="kapacita.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Configure/kapacita.vi"/>
+			<Item Name="test_rozptyl.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Examples/test_rozptyl.vi"/>
 		</Item>
 		<Item Name="EFmeter.lvlib" Type="Library" URL="/&lt;instrlib&gt;/EFmeter/EFmeter.lvlib"/>
 		<Item Name="Dependencies" Type="Dependencies">
@@ -77,8 +78,6 @@
 				<Item Name="BK Precision 8500B Series.lvlib" Type="Library" URL="/&lt;instrlib&gt;/EFmeter/Examples/BK Precision 8500B Series/BK Precision 8500B Series.lvlib"/>
 			</Item>
 			<Item Name="lvanlys.dll" Type="Document" URL="/&lt;resource&gt;/lvanlys.dll"/>
-			<Item Name="Initialize.vi" Type="VI" URL="../../../../../škola/BP_data/FW/BP_demo_USB/EFmeter/Examples/BK Precision 8500B Series/Public/Initialize.vi"/>
-			<Item Name="Configure Constant Current.vi" Type="VI" URL="../../../../../škola/BP_data/FW/BP_demo_USB/EFmeter/Examples/BK Precision 8500B Series/Public/Configure/Configure Constant Current.vi"/>
 		</Item>
 		<Item Name="Build Specifications" Type="Build"/>
 	</Item>
