@@ -11,10 +11,8 @@
 			<Item Name="zatezovaci_charakteristika.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Examples/zatezovaci_charakteristika.vi"/>
 			<Item Name="DCIR.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Examples/DCIR.vi"/>
 			<Item Name="efektivita.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Examples/efektivita.vi"/>
-			<Item Name="kalibrace.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Examples/kalibrace.vi"/>
 			<Item Name="Dodana_energie.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Examples/Dodana_energie.vi"/>
 			<Item Name="kapacita.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Public/Configure/kapacita.vi"/>
-			<Item Name="test_rozptyl.vi" Type="VI" URL="/&lt;instrlib&gt;/EFmeter/Examples/test_rozptyl.vi"/>
 		</Item>
 		<Item Name="EFmeter.lvlib" Type="Library" URL="/&lt;instrlib&gt;/EFmeter/EFmeter.lvlib"/>
 		<Item Name="Dependencies" Type="Dependencies">
@@ -59,7 +57,6 @@
 				<Item Name="DialogType.ctl" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/DialogType.ctl"/>
 				<Item Name="General Error Handler.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/General Error Handler.vi"/>
 				<Item Name="Simple Error Handler.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Simple Error Handler.vi"/>
-				<Item Name="NI_AALPro.lvlib" Type="Library" URL="/&lt;vilib&gt;/Analysis/NI_AALPro.lvlib"/>
 				<Item Name="High Resolution Relative Seconds.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/High Resolution Relative Seconds.vi"/>
 			</Item>
 			<Item Name="instr.lib" Type="Folder">
