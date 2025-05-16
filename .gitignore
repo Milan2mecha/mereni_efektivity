@@ -76,3 +76,7 @@ FW/BP_demo_USB/bp_demo_usb/.settings/
 FW/BP_demo_USB/bp_demo_usb/.cproject
 FW/BP_demo_USB/bp_demo_usb/.project
 FW/BP_demo_USB/bp_demo_usb/*.launch
+FW_EFmeter/Debug/
+FW_EFmeter/Drivers/
+FW_EFmeter/.settings/
+FW_EFmeter/Release/
